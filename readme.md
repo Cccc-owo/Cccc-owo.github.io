@@ -1,33 +1,32 @@
-![Deploy](https://github.com/Cccc-owo/Cccc-owo.github.io/workflows/Deploy/badge.svg?branch=source)
-
 # 博客源码
 
-Clone 到本地:
+***Clone 到本地:***
 
->git clone https://github.com/Cccc-owo/Cccc-owo.github.io.git --recursive
+>***git clone https://github.com/Cccc-owo/Cccc-owo.github.io.git --recursive***
 
-(***配合Github Actions使用***)
+***<u>配合[Travis CI](https://travis-ci.com/)使用，本仓库已配置完成</u>***
 
-Hexo 版本查看:
+***Hexo 版本查看:***
 
-> hexo version
+> ***hexo version***
 
-部署:
+***部署:***
 
-> npm install
+> ***npm install***
 
-新文章:
+***新文章:***
 
-> hexo new <文章名>
+> ***hexo new <文章名>***
 
-生成文件:
+***生成文件:***
 
-> hexo g
+> ***hexo g***
 
-本地测试:(127.0.0.1:4000)
+***本地测试:(127.0.0.1:4000)***
 
-> hexo s
+> ***hexo s***
 
-清理生成文件:
+***清理生成文件:***
 
-> hexo clean
+> ***hexo clean***
+
