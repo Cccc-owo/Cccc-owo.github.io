@@ -7,7 +7,7 @@ comments: false
 
 <img src="https://s1.ax1x.com/2020/08/12/avWgrn.png" style="zoom:75%;" />
 
-如你所见，[这个网站](https://blog.cycraft.xyz)的搭建者。我是一个普通的学生，平时喜欢VAN♂游戏，包括但不限于MineCraft。
+如你所见，[这个网站](https://blog.cccc-owo.xyz)的搭建者。我是一个普通的学生，平时喜欢VAN♂游戏，包括但不限于MineCraft。
 
 自建MC服务器(1.16.5):
 
