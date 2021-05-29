@@ -1,0 +1,6 @@
+[submodule "source/lib/fancybox"]
+	path = source/lib/fancybox
+	url = https://github.com/theme-next/theme-next-fancybox3.git
+[submodule "source/lib/needsharebutton"]
+	path = source/lib/needsharebutton
+	url = https://github.com/theme-next/hexo-next-share.git
