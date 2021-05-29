@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.proxy.ustclug.org/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/pace-js@1/themes/blue/pace-theme-minimal.css">
+  <script src="//cdn.jsdelivr.net/npm/pace-js@1/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"cccc-owo.github.io","root":"/","scheme":"Mist","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":true,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="相信各位玩过MC的玩家们，都曾想过自己开一个服务器吧。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="家用电脑搭建Minecraft服务器">
+<meta property="og:url" content="https://cccc-owo.github.io/posts/2db743f6/index.html">
+<meta property="og:site_name" content="Cccc_&#39;s Blog">
+<meta property="og:description" content="相信各位玩过MC的玩家们，都曾想过自己开一个服务器吧。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/post_2db743f6/1.png">
+<meta property="og:image" content="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/post_2db743f6/3.png">
+<meta property="og:image" content="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/post_2db743f6/4.png">
+<meta property="og:image" content="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/post_2db743f6/5.png">
+<meta property="og:image" content="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/post_2db743f6/6.png">
+<meta property="og:image" content="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/post_2db743f6/7.png">
+<meta property="og:image" content="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/post_2db743f6/8.png">
+<meta property="og:image" content="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/post_2db743f6/9.png">
+<meta property="og:image" content="https://doc.natfrp.com/_images/download.png">
+<meta property="og:image" content="https://doc.natfrp.com/launcher/_images/usage-0.png">
+<meta property="og:image" content="https://doc.natfrp.com/launcher/_images/usage-1.png">
+<meta property="og:image" content="https://doc.natfrp.com/launcher/_images/usage-2.png">
+<meta property="og:image" content="https://doc.natfrp.com/launcher/_images/usage-3.png">
+<meta property="og:image" content="https://doc.natfrp.com/launcher/_images/usage-4.png">
+<meta property="og:image" content="https://doc.natfrp.com/launcher/_images/usage-5.png">
+<meta property="og:image" content="https://doc.natfrp.com/launcher/_images/usage-6.png">
+<meta property="og:image" content="https://doc.natfrp.com/launcher/_images/usage-7.png">
+<meta property="og:image" content="https://doc.natfrp.com/launcher/_images/usage-8.png">
+<meta property="og:image" content="https://doc.natfrp.com/launcher/_images/usage-9.png">
+<meta property="og:image" content="https://doc.natfrp.com/launcher/_images/usage-10.png">
+<meta property="og:image" content="https://doc.natfrp.com/launcher/_images/usage-11.png">
+<meta property="og:image" content="https://doc.natfrp.com/launcher/_images/usage-12.png">
+<meta property="og:image" content="https://doc.natfrp.com/launcher/_images/usage-13.png">
+<meta property="og:image" content="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/post_2db743f6/10.png">
+<meta property="article:published_time" content="2020-08-03T11:18:34.000Z">
+<meta property="article:modified_time" content="2021-05-29T07:59:42.427Z">
+<meta property="article:author" content="Cccc_">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Minecraft">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/post_2db743f6/1.png">
+
+<link rel="canonical" href="https://cccc-owo.github.io/posts/2db743f6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>家用电脑搭建Minecraft服务器 | Cccc_'s Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Cccc_'s Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Well</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">9</span></a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">6</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">5</span></a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>404页面</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+  <a href="https://github.com/Cccc-owo" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://cccc-owo.github.io/posts/2db743f6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/avatar/Head_1024x.png">
+      <meta itemprop="name" content="Cccc_">
+      <meta itemprop="description" content="A Student">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Cccc_'s Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          家用电脑搭建Minecraft服务器
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-03 19:18:34" itemprop="dateCreated datePublished" datetime="2020-08-03T19:18:34+08:00">2020-08-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-05-29 15:59:42" itemprop="dateModified" datetime="2021-05-29T15:59:42+08:00">2021-05-29</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B8%B8%E6%88%8F/" itemprop="url" rel="index"><span itemprop="name">游戏</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%B8%B8%E6%88%8F/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+                </span>
+            </span>
+
+          
+            <div class="post-description">相信各位玩过MC的玩家们，都曾想过自己开一个服务器吧。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="Ⅰ-前言-INTRODUCTION"><a href="#Ⅰ-前言-INTRODUCTION" class="headerlink" title="Ⅰ. 前言 INTRODUCTION"></a>Ⅰ. 前言 INTRODUCTION</h1><p>  相信各位玩过 **Minecraft（ <em>下称MC</em>）**的玩家们，都曾想过自己开一个服务器吧。<br>  不过，大部分人或许都在一开始就放弃了。这篇文章，就是为了那些 <strong>心有余而力不足</strong>的想当服主的玩家而写的。<br>  <em>会有谁看呢(笑)</em><br>  那么，开始我们的 <strong>开服教程吧!</strong>  </p>
+<h1 id="Ⅱ-准备-PREPARATION"><a href="#Ⅱ-准备-PREPARATION" class="headerlink" title="Ⅱ. 准备 PREPARATION"></a>Ⅱ. 准备 PREPARATION</h1><p>  接下来，我会为你提供开服准备的步骤，请确保<strong>自己 &amp; 脑子</strong>在线。</p>
+<h2 id="一-配置检查"><a href="#一-配置检查" class="headerlink" title="一. 配置检查"></a>一. 配置检查</h2><ol>
+<li><p>如果你的电脑系统是 <strong>Windows 10</strong>，请你右键单击 <strong>「此电脑」</strong>，在菜单中左键单击 <strong>「属性」</strong>。检查你的 <strong>运行内存</strong> <em>（即「已安装的内存 RAM」）</em>。  </p>
+<p>如果你的电脑系统是 <strong>Windows 7</strong>，请你右键单击 <strong>「计算机」</strong>，在菜单中左键单击 <strong>「属性」</strong>。检查你的 <strong>运行内存</strong> <em>（即「已安装的内存 RAM」）</em>。  </p>
+</li>
+<li><p>如果 <strong>RAM ≥ 6.0GB</strong> <em>（推荐值：大于等于8）</em>，恭喜你，电脑配置 <strong>足以</strong>支持你开服。  </p>
+<p>如果 <strong>4.0GB ≤ RAM ≤ 6.0GB</strong>，也恭喜你，还是 <strong>有可能</strong>开服的。  </p>
+<p>至于运行内存 <em>小于4.0GB</em>，我只能说：真不知道你是 <strong>怎么</strong>把这台电脑 <strong>用下去的</strong>……</p>
+<p><strong>图示：</strong></p>
+<img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/post_2db743f6/1.png" alt="RAM" style="zoom: 80%;" /></li>
+</ol>
+<h2 id="二-JAVA-配置"><a href="#二-JAVA-配置" class="headerlink" title="二. JAVA 配置"></a>二. JAVA 配置</h2><p>  众所周知(bushi)， <strong>Minecraft:Java Edition</strong>( <em>就是PC版</em>)是 <strong>由JAVA语言编写</strong>的。所以对于MC服务器来说，JAVA也是必不可少的。  </p>
+<hr>
+<h3 id="1-下载JAVA"><a href="#1-下载JAVA" class="headerlink" title="1.下载JAVA"></a>1.下载JAVA</h3><p>  到了我们喜闻乐见的下载环节了，由于官方下载速度太慢，于是我决定用镜像的方法下载。（ <strong>不懂没关系，继续向下看</strong>）<br>  点击 **<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/AdoptOpenJDK/8/jdk/x64/windows/OpenJDK8U-jdk_x64_windows_openj9_8u292b10_openj9-0.26.0.msi">64位</a>、<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/AdoptOpenJDK/8/jdk/x32/windows/OpenJDK8U-jdk_x86-32_windows_openj9_8u292b10_openj9-0.26.0.msi">32位</a>**（感谢 <em>清华大学镜像源</em>），下载并打开。<br>  <em>不断下一步，接受，下一步</em>进行安装……  </p>
+<h3 id="2-环境变量配置（可略过）"><a href="#2-环境变量配置（可略过）" class="headerlink" title="2.环境变量配置（可略过）"></a>2.环境变量配置（可略过）</h3><p><strong>此步骤针对Windows 10，如果是其他系统请自行百度<a target="_blank" rel="noopener" href="https://www.baidu.com/s?wd=JAVA%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE">「JAVA环境变量配置」</a></strong><br><strong>如果你的安装没有问题的话，可以跳过此步骤。（重要！！！）</strong><br>  现在请再次进入「<strong>属性</strong>」（就是Ⅱ.1配置检查中的）。<br>  单击「<strong>高级系统设置</strong>」，在新窗口中单击「<strong>环境变量</strong>」。<br>  在系统变量的方框内，「<strong>新建</strong>」一个名为「<strong>JAVA_HOME</strong>」的变量，变量值请填写安装的JDK路径</p>
+<p>  接下来，找到名为「<strong>Path</strong>」的变量。在右边的选项中单击「<strong>新建</strong>」，填入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">%JAVA_HOME%\bin</span><br></pre></td></tr></table></figure>
+<p>  这一步就 <strong>完成</strong>了！  </p>
+<h1 id="Ⅲ-开服-Do-it"><a href="#Ⅲ-开服-Do-it" class="headerlink" title="Ⅲ. 开服 Do it"></a>Ⅲ. 开服 Do it</h1><p><strong>前排提醒，这一步是服务器的重中之重，务必谨慎</strong>  </p>
+<h2 id="一-下载"><a href="#一-下载" class="headerlink" title="一. 下载"></a>一. 下载</h2><p>  <em>请选择自己需要的最新版本下载</em></p>
+<p>  <a target="_blank" rel="noopener" href="https://papermc.io/downloads">下载点我</a>，如有其他版本或其他核心服务端需求，请在Github仓库Issue或个人QQ咨询。  </p>
+<h2 id="二-配置"><a href="#二-配置" class="headerlink" title="二.配置"></a>二.配置</h2><h3 id="1-结束了"><a href="#1-结束了" class="headerlink" title="1.结束了?"></a>1.结束了?</h3><ol>
+<li>在你喜欢(例如D盘)的地方新建一个文件夹( <strong>建议文件夹名字不要为中文或特殊符号</strong>)。 </li>
+<li>把 <strong>下载的核心</strong>(如下图)放入新建的文件夹中。   <img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/post_2db743f6/3.png" alt="3"  /></li>
+<li>在文件夹中 <strong>右键新建一个文本文档</strong>，并打开编辑。把下面的代码粘贴到txt中  （可根据需要修改）</li>
+</ol>
+<figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@<span class="built_in">ECHO</span> OFF</span><br><span class="line">java -Xms1G -Xmx1G -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:MaxGCPauseMillis=<span class="number">100</span> -XX:+DisableExplicitGC -XX:TargetSurvivorRatio=<span class="number">90</span> -XX:G1NewSizePercent=<span class="number">50</span> -XX:G1MaxNewSizePercent=<span class="number">80</span> -XX:G1MixedGCLiveThresholdPercent=<span class="number">35</span> -XX:+AlwaysPreTouch -XX:+ParallelRefProcEnabled -Dusing.aikars.flags=mcflags.emc.gs -jar <span class="variable">!!!</span>下载的核心文件名<span class="variable">!!!</span>.jar --nogui</span><br><span class="line"><span class="built_in">ECHO</span> SERVER CLOSED!</span><br><span class="line"><span class="built_in">PAUSE</span>&gt;<span class="built_in">NUL</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>其中，第二行最后的 <strong>「!!!下载的核心文件名!!!」需要改为核心文件名，切记！</strong>  </li>
+<li>接下来， <strong>保存并关闭文本文档</strong>。把文本文档重命名为「Start**.bat**」，改完后请确认文件类型为「 <strong>Windows 批处理文件</strong>」，如不是，请百度<a target="_blank" rel="noopener" href="https://www.baidu.com/s?wd=%E6%9B%B4%E6%94%B9%E6%96%87%E4%BB%B6%E6%89%A9%E5%B1%95%E5%90%8D">「更改文件拓展名」</a>。  </li>
+</ol>
+<p><img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/post_2db743f6/4.png" alt="4"></p>
+<h3 id="2-结束了"><a href="#2-结束了" class="headerlink" title="2.结束了?"></a>2.结束了?</h3><ol>
+<li>左键双击「Start.bat」等待五秒左右，不用管命令行(下称 <strong>CMD</strong>)出现什么字，按下任意键将其关闭。  </li>
+<li>现在可见文件夹里又 <strong>多了许多文件</strong>，不要慌，找到 <strong>「eula.txt」</strong>并打开。你可能会看到 <strong>如下</strong>内容👇  </li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#By changing the setting below to TRUE you are indicating your agreement to our EULA (https://account.mojang.com/documents/minecraft_eula).</span><br><span class="line">#Sat Feb 29 20:10:04 CST 2020</span><br><span class="line">eula=false</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>现在你要做的就是 <strong>把第三行中「eula=false」改为「eula=true」</strong>。如下所示：  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#By changing the setting below to TRUE you are indicating your agreement to our EULA (https://account.mojang.com/documents/minecraft_eula).</span><br><span class="line">#Sat Feb 29 20:10:04 CST 2020</span><br><span class="line">eula=true</span><br></pre></td></tr></table></figure>
+<img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/post_2db743f6/5.png" alt="5"></li>
+<li>保存并关闭文档，此时再次打开「Start.bat」。等待一分钟左右的时间， *<em>如果正确按步骤来，那服务器已经 <em>好了</em>。*</em> <em>(我好了（挨打）)</em><br> <img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/post_2db743f6/6.png" alt="6"></li>
+<li>如果是盗版玩家，请用「记事本」打开「server.properties」，更改44行的「true」为「false」。如下图<br> <img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/post_2db743f6/7.png" alt="New"></li>
+</ol>
+<h4 id="EX·服务器常用指令"><a href="#EX·服务器常用指令" class="headerlink" title="EX·服务器常用指令"></a>EX·服务器常用指令</h4><p>（建议先在后台取得OP权限）  </p>
+<blockquote>
+<p>后台可不加「 / 」，游戏内需带「 / 」</p>
+</blockquote>
+<blockquote>
+<p>/op &lt;玩家&gt;          给某个玩家OP<br>/deop &lt;玩家&gt;         取消某个玩家的OP<br>/gamemode survival「或」creative「或」adventure「或」spectator &lt;玩家&gt;<br>切换某个玩家为生存模式/创造模式/冒险模式/旁观者模式<br>/whitelist add &lt;玩家&gt;     把某个玩家加入白名单<br>/whitelist list        查看白名单列表<br>/whitelist off        关闭白名单<br>/whitelist on        开启白名单<br>/whitelist reload       重载白名单<br>/whitelist remove &lt;玩家&gt;     把某个玩家移出白名单<br>/ban &lt;玩家&gt;            封禁某个玩家<br>/ban-ip <IP>              封禁某个IP地址<br>/pardon &lt;玩家&gt;       解封某个玩家<br>/pardon-ip &lt;地址&gt;       解封某个IP地址<br>/tell &lt;玩家&gt; &lt;信息…&gt;     与某玩家私聊<br>/msg &lt;玩家&gt; &lt;信息…&gt;      同上<br>/w &lt;玩家&gt; &lt;信息…&gt;      同上</p>
+</blockquote>
+<h1 id="Ⅳ-游玩-Play"><a href="#Ⅳ-游玩-Play" class="headerlink" title="Ⅳ. 游玩 Play"></a>Ⅳ. 游玩 Play</h1><h2 id="一-局域网内游玩"><a href="#一-局域网内游玩" class="headerlink" title="一.局域网内游玩"></a>一.局域网内游玩</h2><h3 id="1-查询内网IP"><a href="#1-查询内网IP" class="headerlink" title="1.查询内网IP"></a>1.查询内网IP</h3><ol>
+<li>按下 <strong>「Win键」</strong>(就是键盘上打开开始菜单的按键) +  <strong>「R」</strong>，输入 <strong>「CMD」</strong>  </li>
+<li>在 <strong>「CMD」</strong>中输入<strong>「ipconfig」</strong>，找到「本地连接」或「以太网」中的<strong>「IPv4地址」</strong>，把右边的一串例如<strong>「192.168.x.xxx」</strong> <em>或是其他的IP地址</em>的数字记下来，这就是 <strong>你的内网IP地址</strong>。<br> <img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/post_2db743f6/8.png" alt="懂自懂"></li>
+</ol>
+<h3 id="2-加入服务器"><a href="#2-加入服务器" class="headerlink" title="2.加入服务器"></a>2.加入服务器</h3><ol>
+<li>打开对应版本的游戏，单击 <strong>「多人游戏」</strong>–&gt; <strong>「添加服务器」</strong></li>
+<li>在地址栏中，填入「（内网）IP地址 <strong>:25565</strong>」，完成并在服务器开启时 *(Start.bat运行时)*加入。 <em>（游戏不用我教怎么启动吧）</em>  </li>
+</ol>
+<p><strong>现在，你就拥有了一个<em>属于你自己</em>的MC服务器</strong><br><img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/post_2db743f6/9.png" alt="OHHHH!!!"></p>
+<h2 id="二-一起玩-Play-together"><a href="#二-一起玩-Play-together" class="headerlink" title="二. 一起玩 Play together"></a>二. 一起玩 Play together</h2><p>  现在，你已经可以让 <strong>连上你家网络的小伙伴</strong>ヽ(￣ω￣(￣ω￣〃)ゝ 一起玩耍了。但 <strong>其他身在远方的小伙伴却不行</strong>，这一步就是为了解决这种情况而存在的。请继续向下看👇</p>
+<hr>
+<h3 id="内网穿透"><a href="#内网穿透" class="headerlink" title="内网穿透"></a>内网穿透</h3><h4 id="Windows-7-安装运行库"><a href="#Windows-7-安装运行库" class="headerlink" title="Windows 7 安装运行库"></a><a target="_blank" rel="noopener" href="https://doc.natfrp.com/#/launcher/usage">Windows 7 安装运行库</a></h4><blockquote>
+<p>最新版启动器不再需要 VC 运行库，安装 .NET Framework 4.8 即可</p>
+</blockquote>
+<video id="video1" controls="" preload="none">
+    <source id="mp4" src="https://doc.natfrp.com/launcher/_videos/install-win7-runtime.mp4" type="video/mp4">
+</video>
+
+<h4 id="Windows-10-安装启动器并登录"><a href="#Windows-10-安装启动器并登录" class="headerlink" title="Windows 10 安装启动器并登录"></a><a target="_blank" rel="noopener" href="https://doc.natfrp.com/#/launcher/usage">Windows 10 安装启动器并登录</a></h4><video id="video1" controls="" preload="none">
+    <source id="mp4" src="https://doc.natfrp.com/launcher/_videos/install-win10.mp4" type="video/mp4">
+</video>
+
+<h4 id="图文安装教程"><a href="#图文安装教程" class="headerlink" title="图文安装教程"></a><a target="_blank" rel="noopener" href="https://doc.natfrp.com/#/launcher/usage?id=%E5%9B%BE%E6%96%87%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B">图文安装教程</a></h4><blockquote>
+<p>登录管理面板，在侧边栏点击 <strong>软件下载</strong>:</p>
+<p><img data-src="https://doc.natfrp.com/_images/download.png" alt="img"></p>
+<p>我们不提供自定义安装路径的选项，如有此类需求请参阅 <a target="_blank" rel="noopener" href="https://jrsoftware.org/ishelp/index.php?topic=setupcmdline">Inno Setup 文档</a><br>默认安装路径为 <code>C:\Program Files\SakuraFrpLauncher</code></p>
+<p>点击启动器右侧的下载地址来下载启动器安装程序:</p>
+<p><img data-src="https://doc.natfrp.com/launcher/_images/usage-0.png" alt="img"></p>
+<p>下载完毕后双击安装程序并根据向导提示进行安装:</p>
+<p>如果在安装过程中碰到问题，请参阅 <a target="_blank" rel="noopener" href="https://doc.natfrp.com/#/launcher/faq?id=install">启动器常见安装问题</a></p>
+<p><img data-src="https://doc.natfrp.com/launcher/_images/usage-1.png" alt="img"></p>
+<h2 id="登录启动器"><a href="#登录启动器" class="headerlink" title="登录启动器"></a><a target="_blank" rel="noopener" href="https://doc.natfrp.com/#/launcher/usage?id=%E7%99%BB%E5%BD%95%E5%90%AF%E5%8A%A8%E5%99%A8">登录启动器</a></h2><p>传统启动器和新版 (WPF) 启动器使用方法基本一致，此处仅提供新版启动器的教程</p>
+<p>安装完毕后双击桌面图标 (如果您选择了 <code>创建桌面快捷方式</code>) 来运行启动器。</p>
+<p>如果您没有勾选 <code>创建桌面快捷方式</code>，请打开 <code>C:\Program Files\SakuraFrpLauncher</code> 文件夹<br>然后运行 <code>SakuraLauncher.exe</code> (如果安装的是传统启动器，请运行 <code>LegacyLauncher.exe</code>)<br><img data-src="https://doc.natfrp.com/launcher/_images/usage-2.png" alt="img"></p>
+<p>进入 <a target="_blank" rel="noopener" href="https://www.natfrp.com/user/profile">用户信息</a> 页面，复制 <strong>访问密钥</strong> 到启动器，点击登录</p>
+<p><img data-src="https://doc.natfrp.com/launcher/_images/usage-3.png" alt="img"></p>
+<h2 id="创建隧道"><a href="#创建隧道" class="headerlink" title="创建隧道"></a><a target="_blank" rel="noopener" href="https://doc.natfrp.com/#/launcher/usage?id=%E5%88%9B%E5%BB%BA%E9%9A%A7%E9%81%93">创建隧道</a></h2><p>登录成功后会自动切换到 <strong>隧道</strong> 标签，点击加号新建隧道</p>
+<p><img data-src="https://doc.natfrp.com/launcher/_images/usage-4.png" alt="img"></p>
+<p>接下来选择您要映射的服务，本文以映射 <code>iperf3</code> 服务器为例，直接找到进程 <code>iperf3</code> 点击，然后选择一个服务器，最后点创建即可</p>
+<p><img data-src="https://doc.natfrp.com/launcher/_images/usage-5.png" alt="img"></p>
+<p>创建成功后按需要选择是否继续创建</p>
+<p><img data-src="https://doc.natfrp.com/launcher/_images/usage-6.png" alt="img"></p>
+<h2 id="启用隧道"><a href="#启用隧道" class="headerlink" title="启用隧道"></a><a target="_blank" rel="noopener" href="https://doc.natfrp.com/#/launcher/usage?id=%E5%90%AF%E7%94%A8%E9%9A%A7%E9%81%93">启用隧道</a></h2><p>不要频繁开关隧道，启用隧道后稍等一会才能连接成功<br>如果长时间 (超过一分钟) 没看到连接成功的提示框请检查日志</p>
+<p>在隧道标签中找到您要启用的隧道，点击右上方开关启用</p>
+<p><img data-src="https://doc.natfrp.com/launcher/_images/usage-7.png" alt="img"></p>
+<p>启动成功后右下角会弹出通知，提示隧道连接方式。该通知可以在设置中通过 <code>关闭隧道状态提示</code> 选项禁用</p>
+<p><img data-src="https://doc.natfrp.com/launcher/_images/usage-8.png" alt="img"></p>
+<p>转到日志标签可以复制连接方式</p>
+<p><img data-src="https://doc.natfrp.com/launcher/_images/usage-9.png" alt="img"></p>
+<p>这样我们的服务就可以在外网被访问到了</p>
+<p><img data-src="https://doc.natfrp.com/launcher/_images/usage-10.png" alt="img"></p>
+<h2 id="删除隧道"><a href="#删除隧道" class="headerlink" title="删除隧道"></a><a target="_blank" rel="noopener" href="https://doc.natfrp.com/#/launcher/usage?id=%E5%88%A0%E9%99%A4%E9%9A%A7%E9%81%93">删除隧道</a></h2><p>将鼠标放到隧道卡片上悬停一会，卡片右上角会出现删除按钮</p>
+<p><img data-src="https://doc.natfrp.com/launcher/_images/usage-11.png" alt="img"></p>
+<p>点击删除按钮，然后确认操作即可删除隧道</p>
+<p><img data-src="https://doc.natfrp.com/launcher/_images/usage-12.png" alt="img"></p>
+<h2 id="开机启动"><a href="#开机启动" class="headerlink" title="开机启动"></a><a target="_blank" rel="noopener" href="https://doc.natfrp.com/#/launcher/usage?id=%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8">开机启动</a></h2><p><code>2.0.0.0</code> 及以上版本的启动器提供两种开机启动方式，一般情况下直接勾选下图中的选项就能满足使用需求</p>
+<p>如需不进桌面自启 (如穿透远程桌面服务)，请参阅 <a target="_blank" rel="noopener" href="https://doc.natfrp.com/#/launcher/service">系统服务</a> 页面了解服务启动方式</p>
+<p><img data-src="https://doc.natfrp.com/launcher/_images/usage-13.png" alt="img"></p>
+</blockquote>
+<h2 id="三-大功告成"><a href="#三-大功告成" class="headerlink" title="三. 大功告成"></a>三. 大功告成</h2><p><strong>We Finished!!!</strong>  </p>
+<p><em>获得成就：结束了。</em>  </p>
+<p><img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/post_2db743f6/10.png" alt="New"></p>
+<h1 id="Ⅴ-结尾-The-End"><a href="#Ⅴ-结尾-The-End" class="headerlink" title="Ⅴ. 结尾 The End"></a>Ⅴ. 结尾 The End</h1><p>  祝贺你， <strong>你的服务器已经可以让所有人玩到了</strong> *(如果有服务器地址 **[外网]**的话)*。也很感谢你耐心地看完这篇文章， <em>本文也许会有纰漏或错误</em>，欢迎来修正。如果你觉得本文对你有帮助，可以开心地与你的小伙伴 <strong>一起</strong>玩MC，也可以把这篇文章 <strong>分享</strong>给 <strong>有需要的人</strong>；当然，如果没能帮到你，那…你 <strong>自己加油</strong>💪吧。<br>  就这样，再见了ヾ(￣▽￣)。</p>
+
+    </div>
+
+    
+    
+    
+
+    
+     <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束 <i class="fa fa-heart"></i> 感谢阅读-------------</div>
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Cccc_
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://cccc-owo.github.io/posts/2db743f6/" title="家用电脑搭建Minecraft服务器">https://cccc-owo.github.io/posts/2db743f6/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+              <a href="/tags/Minecraft/" rel="tag"># Minecraft</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/posts/c47e0b89/" rel="next" title="SteamCommunity302">
+      SteamCommunity302 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%85%A0-%E5%89%8D%E8%A8%80-INTRODUCTION"><span class="nav-number">1.</span> <span class="nav-text">Ⅰ. 前言 INTRODUCTION</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%85%A1-%E5%87%86%E5%A4%87-PREPARATION"><span class="nav-number">2.</span> <span class="nav-text">Ⅱ. 准备 PREPARATION</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E9%85%8D%E7%BD%AE%E6%A3%80%E6%9F%A5"><span class="nav-number">2.1.</span> <span class="nav-text">一. 配置检查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-JAVA-%E9%85%8D%E7%BD%AE"><span class="nav-number">2.2.</span> <span class="nav-text">二. JAVA 配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E4%B8%8B%E8%BD%BDJAVA"><span class="nav-number">2.2.1.</span> <span class="nav-text">1.下载JAVA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE%EF%BC%88%E5%8F%AF%E7%95%A5%E8%BF%87%EF%BC%89"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.环境变量配置（可略过）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%85%A2-%E5%BC%80%E6%9C%8D-Do-it"><span class="nav-number">3.</span> <span class="nav-text">Ⅲ. 开服 Do it</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E4%B8%8B%E8%BD%BD"><span class="nav-number">3.1.</span> <span class="nav-text">一. 下载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E9%85%8D%E7%BD%AE"><span class="nav-number">3.2.</span> <span class="nav-text">二.配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%BB%93%E6%9D%9F%E4%BA%86"><span class="nav-number">3.2.1.</span> <span class="nav-text">1.结束了?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E7%BB%93%E6%9D%9F%E4%BA%86"><span class="nav-number">3.2.2.</span> <span class="nav-text">2.结束了?</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#EX%C2%B7%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4"><span class="nav-number">3.2.2.1.</span> <span class="nav-text">EX·服务器常用指令</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%85%A3-%E6%B8%B8%E7%8E%A9-Play"><span class="nav-number">4.</span> <span class="nav-text">Ⅳ. 游玩 Play</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80-%E5%B1%80%E5%9F%9F%E7%BD%91%E5%86%85%E6%B8%B8%E7%8E%A9"><span class="nav-number">4.1.</span> <span class="nav-text">一.局域网内游玩</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%9F%A5%E8%AF%A2%E5%86%85%E7%BD%91IP"><span class="nav-number">4.1.1.</span> <span class="nav-text">1.查询内网IP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%8A%A0%E5%85%A5%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-number">4.1.2.</span> <span class="nav-text">2.加入服务器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C-%E4%B8%80%E8%B5%B7%E7%8E%A9-Play-together"><span class="nav-number">4.2.</span> <span class="nav-text">二. 一起玩 Play together</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F"><span class="nav-number">4.2.1.</span> <span class="nav-text">内网穿透</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Windows-7-%E5%AE%89%E8%A3%85%E8%BF%90%E8%A1%8C%E5%BA%93"><span class="nav-number">4.2.1.1.</span> <span class="nav-text">Windows 7 安装运行库</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Windows-10-%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8%E5%99%A8%E5%B9%B6%E7%99%BB%E5%BD%95"><span class="nav-number">4.2.1.2.</span> <span class="nav-text">Windows 10 安装启动器并登录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%BE%E6%96%87%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B"><span class="nav-number">4.2.1.3.</span> <span class="nav-text">图文安装教程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%99%BB%E5%BD%95%E5%90%AF%E5%8A%A8%E5%99%A8"><span class="nav-number">4.3.</span> <span class="nav-text">登录启动器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E9%9A%A7%E9%81%93"><span class="nav-number">4.4.</span> <span class="nav-text">创建隧道</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AF%E7%94%A8%E9%9A%A7%E9%81%93"><span class="nav-number">4.5.</span> <span class="nav-text">启用隧道</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E9%9A%A7%E9%81%93"><span class="nav-number">4.6.</span> <span class="nav-text">删除隧道</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8"><span class="nav-number">4.7.</span> <span class="nav-text">开机启动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89-%E5%A4%A7%E5%8A%9F%E5%91%8A%E6%88%90"><span class="nav-number">4.8.</span> <span class="nav-text">三. 大功告成</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%85%A4-%E7%BB%93%E5%B0%BE-The-End"><span class="nav-number">5.</span> <span class="nav-text">Ⅴ. 结尾 The End</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Cccc_"
+      src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/avatar/Head_1024x.png">
+  <p class="site-author-name" itemprop="name">Cccc_</p>
+  <div class="site-description" itemprop="description">A Student</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Cccc-owo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Cccc-owo" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:4hhhhfor@gmail.com" title="E-Mail → mailto:4hhhhfor@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Cccc_</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://mist.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div><script color="0,0,255" opacity="0.5" zIndex="-1" count="99" src="https://cdn.jsdelivr.net/npm/canvas-nest.js@1/dist/canvas-nest.js"></script>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='0,0,255' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
