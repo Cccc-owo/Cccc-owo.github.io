@@ -1,6 +1,6 @@
 ---
-title: ~~BILIBILI_HELPER配置和使用~~
-description: 我也不知道写什么
+title: BILIBILI_HELPER配置和使用
+description: 删了删了
 tags: bilibili
 categories: 技术
 subtitle: Powered by Github
