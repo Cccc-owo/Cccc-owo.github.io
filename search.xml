@@ -235,7 +235,7 @@
         <category>技术</category>
       </categories>
       <tags>
-        <tag>没有</tag>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -360,6 +360,26 @@
       </categories>
       <tags>
         <tag>存档</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>记一次博客构建更新</title>
+    <url>/posts/49066/</url>
+    <content><![CDATA[<h1 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h1><p>我的电脑系统重装，忘记备份ssh密钥了，只好重新生成并顺手删除了以前的密钥。因此依赖于以前密钥的仓库Secret失效了。</p>
+<p>我又忘记当时是怎么配置workflow的，所以想要更新博客时又构建失败了。</p>
+<p>百度一番解决方法，找到了以前想用但没采用的Travis</p>
+<h1 id="经过"><a href="#经过" class="headerlink" title="经过"></a>经过</h1><p>参考<a href="https://hexo.io/zh-cn/docs/github-pages">Hexo文档</a>稍作修改。</p>
+<p>仓库<a href="https://github.com/Cccc-owo/Cccc-owo.github.io/blob/main/.travis.yml">travis.yml</a></p>
+<figure class="highlight yml"><table><tr><td class="code"><pre><span class="line"><span class="attr">sudo:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">language:</span> <span class="string">node_js</span></span><br><span class="line"><span class="attr">node_js:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="number">14.17</span><span class="number">.0</span></span><br><span class="line"><span class="attr">cache:</span> <span class="string">npm</span></span><br><span class="line"><span class="attr">branches:</span></span><br><span class="line">  <span class="attr">only:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">main</span> <span class="comment"># build master branch only</span></span><br><span class="line"><span class="attr">script:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">hexo</span> <span class="string">generate</span> <span class="comment"># generate static files</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">provider:</span> <span class="string">pages</span></span><br><span class="line">  <span class="attr">skip-cleanup:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">github-token:</span> <span class="string">$GH_TOKEN</span></span><br><span class="line">  <span class="attr">keep-history:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">on:</span></span><br><span class="line">    <span class="attr">branch:</span> <span class="string">main</span></span><br><span class="line">  <span class="attr">local-dir:</span> <span class="string">public</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h1><p>昨天把博客的构建从Github Actions换到了Travis。目前体验良好。</p>
+<p><strong>教训：不要忘记备份！</strong></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
