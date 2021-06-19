@@ -71,12 +71,13 @@
 <h3 id="2-环境变量配置（可略过）"><a href="#2-环境变量配置（可略过）" class="headerlink" title="2.环境变量配置（可略过）"></a>2.环境变量配置（可略过）</h3><p><strong>此步骤针对Windows 10，如果是其他系统请自行百度<a href="https://www.baidu.com/s?wd=JAVA%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%E9%85%8D%E7%BD%AE">「JAVA环境变量配置」</a></strong><br><strong>如果你的安装没有问题的话，可以跳过此步骤。（重要！！！）</strong><br>  现在请再次进入「<strong>属性</strong>」（就是Ⅱ.1配置检查中的）。<br>  单击「<strong>高级系统设置</strong>」，在新窗口中单击「<strong>环境变量</strong>」。<br>  在系统变量的方框内，「<strong>新建</strong>」一个名为「<strong>JAVA_HOME</strong>」的变量，变量值请填写安装的JDK路径</p>
 <p>  接下来，找到名为「<strong>Path</strong>」的变量。在右边的选项中单击「<strong>新建</strong>」，填入</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">%JAVA_HOME%\bin</span><br></pre></td></tr></table></figure>
-<p>  这一步就 <strong>完成</strong>了！  </p>
+
+<p>这一步就 <strong>完成</strong>了！  </p>
 <h1 id="Ⅲ-开服-Do-it"><a href="#Ⅲ-开服-Do-it" class="headerlink" title="Ⅲ. 开服 Do it"></a>Ⅲ. 开服 Do it</h1><p><strong>前排提醒，这一步是服务器的重中之重，务必谨慎</strong>  </p>
 <h2 id="一-下载"><a href="#一-下载" class="headerlink" title="一. 下载"></a>一. 下载</h2><p>  <em>请选择自己需要的最新版本下载</em></p>
 <p>  <a href="https://papermc.io/downloads">下载点我</a>，如有其他版本或其他核心服务端需求，请在Github仓库Issue或个人QQ咨询。  </p>
 <h2 id="二-配置"><a href="#二-配置" class="headerlink" title="二.配置"></a>二.配置</h2><h3 id="1-结束了"><a href="#1-结束了" class="headerlink" title="1.结束了?"></a>1.结束了?</h3><ol>
-<li>在你喜欢(例如D盘)的地方新建一个文件夹( <strong>建议文件夹名字不要为中文或特殊符号</strong>)。 </li>
+<li>在你喜欢(例如D盘)的地方新建一个文件夹( <strong>建议文件夹名字不要为中文或特殊符号</strong>)。</li>
 <li>把 <strong>下载的核心</strong>(如下图)放入新建的文件夹中。   <img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/post_2db743f6/3.png" alt="3"  /></li>
 <li>在文件夹中 <strong>右键新建一个文本文档</strong>，并打开编辑。把下面的代码粘贴到txt中  （可根据需要修改）</li>
 </ol>
@@ -92,18 +93,16 @@
 <li>现在可见文件夹里又 <strong>多了许多文件</strong>，不要慌，找到 <strong>「eula.txt」</strong>并打开。你可能会看到 <strong>如下</strong>内容👇  </li>
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#By changing the setting below to TRUE you are indicating your agreement to our EULA (https://account.mojang.com/documents/minecraft_eula).</span><br><span class="line">#Sat Feb 29 20:10:04 CST 2020</span><br><span class="line">eula=false</span><br></pre></td></tr></table></figure>
+
 <ol start="3">
-<li>现在你要做的就是 <strong>把第三行中「eula=false」改为「eula=true」</strong>。如下所示：  <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#By changing the setting below to TRUE you are indicating your agreement to our EULA (https://account.mojang.com/documents/minecraft_eula).</span><br><span class="line">#Sat Feb 29 20:10:04 CST 2020</span><br><span class="line">eula=true</span><br></pre></td></tr></table></figure>
-<img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/post_2db743f6/5.png" alt="5"></li>
-<li>保存并关闭文档，此时再次打开「Start.bat」。等待一分钟左右的时间， *<em>如果正确按步骤来，那服务器已经 <em>好了</em>。*</em> <em>(我好了（挨打）)</em><br> <img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/post_2db743f6/6.png" alt="6"></li>
-<li>如果是盗版玩家，请用「记事本」打开「server.properties」，更改44行的「true」为「false」。如下图<br> <img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/post_2db743f6/7.png" alt="New"></li>
+<li>现在你要做的就是 <strong>把第三行中「eula=false」改为「eula=true」</strong>。如下所示：  </li>
 </ol>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#By changing the setting below to TRUE you are indicating your agreement to our EULA (https://account.mojang.com/documents/minecraft_eula).</span><br><span class="line">#Sat Feb 29 20:10:04 CST 2020</span><br><span class="line">eula=true</span><br></pre></td></tr></table></figure>
+
+<p>  <img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/post_2db743f6/5.png" alt="5"><br>4. 保存并关闭文档，此时再次打开「Start.bat」。等待一分钟左右的时间， *<em>如果正确按步骤来，那服务器已经 <em>好了</em>。*</em> <em>(我好了（挨打）)</em><br>    <img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/post_2db743f6/6.png" alt="6"><br>5. 如果是盗版玩家，请用「记事本」打开「server.properties」，更改44行的「true」为「false」。如下图<br>    <img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/post_2db743f6/7.png" alt="New"></p>
 <h4 id="EX·服务器常用指令"><a href="#EX·服务器常用指令" class="headerlink" title="EX·服务器常用指令"></a>EX·服务器常用指令</h4><p>（建议先在后台取得OP权限）  </p>
 <blockquote>
-<p>后台可不加「 / 」，游戏内需带「 / 」</p>
-</blockquote>
-<blockquote>
-<p>/op &lt;玩家&gt;          给某个玩家OP<br>/deop &lt;玩家&gt;         取消某个玩家的OP<br>/gamemode survival「或」creative「或」adventure「或」spectator &lt;玩家&gt;<br>切换某个玩家为生存模式/创造模式/冒险模式/旁观者模式<br>/whitelist add &lt;玩家&gt;     把某个玩家加入白名单<br>/whitelist list        查看白名单列表<br>/whitelist off        关闭白名单<br>/whitelist on        开启白名单<br>/whitelist reload       重载白名单<br>/whitelist remove &lt;玩家&gt;     把某个玩家移出白名单<br>/ban &lt;玩家&gt;            封禁某个玩家<br>/ban-ip <IP>              封禁某个IP地址<br>/pardon &lt;玩家&gt;       解封某个玩家<br>/pardon-ip &lt;地址&gt;       解封某个IP地址<br>/tell &lt;玩家&gt; &lt;信息…&gt;     与某玩家私聊<br>/msg &lt;玩家&gt; &lt;信息…&gt;      同上<br>/w &lt;玩家&gt; &lt;信息…&gt;      同上</p>
+<p>后台可不加「 / 」，游戏内需带「 / 」<br>/op &lt;玩家&gt;          给某个玩家OP<br>/deop &lt;玩家&gt;         取消某个玩家的OP<br>/gamemode survival「或」creative「或」adventure「或」spectator &lt;玩家&gt;<br>切换某个玩家为生存模式/创造模式/冒险模式/旁观者模式<br>/whitelist add &lt;玩家&gt;     把某个玩家加入白名单<br>/whitelist list        查看白名单列表<br>/whitelist off        关闭白名单<br>/whitelist on        开启白名单<br>/whitelist reload       重载白名单<br>/whitelist remove &lt;玩家&gt;     把某个玩家移出白名单<br>/ban &lt;玩家&gt;            封禁某个玩家<br>/ban-ip <IP>              封禁某个IP地址<br>/pardon &lt;玩家&gt;       解封某个玩家<br>/pardon-ip &lt;地址&gt;       解封某个IP地址<br>/tell &lt;玩家&gt; &lt;信息…&gt;     与某玩家私聊<br>/msg &lt;玩家&gt; &lt;信息…&gt;      同上<br>/w &lt;玩家&gt; &lt;信息…&gt;      同上</p>
 </blockquote>
 <h1 id="Ⅳ-游玩-Play"><a href="#Ⅳ-游玩-Play" class="headerlink" title="Ⅳ. 游玩 Play"></a>Ⅳ. 游玩 Play</h1><h2 id="一-局域网内游玩"><a href="#一-局域网内游玩" class="headerlink" title="一.局域网内游玩"></a>一.局域网内游玩</h2><h3 id="1-查询内网IP"><a href="#1-查询内网IP" class="headerlink" title="1.查询内网IP"></a>1.查询内网IP</h3><ol>
 <li>按下 <strong>「Win键」</strong>(就是键盘上打开开始菜单的按键) +  <strong>「R」</strong>，输入 <strong>「CMD」</strong>  </li>
@@ -202,7 +201,30 @@
         <category>日记</category>
       </categories>
       <tags>
-        <tag>没有</tag>
+        <tag>杂七杂八</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>碎碎念2</title>
+    <url>/posts/63946/</url>
+    <content><![CDATA[<p>七日后  即为中考之时</p>
+<p>预祝所有初三学子中考大捷</p>
+<hr>
+<p>另：中考完后会更新一些东西，如下</p>
+<ul>
+<li><p>使用CloudFlare Worker 反向代理网站</p>
+</li>
+<li><p>碎碎念3-我为什么选择Hexo</p>
+</li>
+<li><p>大概就这样吧</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>日记</category>
+      </categories>
+      <tags>
+        <tag>杂七杂八</tag>
       </tags>
   </entry>
   <entry>
