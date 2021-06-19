@@ -4,6 +4,8 @@
 
 [写作分支](https://github.com/Cccc-owo/Cccc-owo.github.io/tree/dev)
 
+[Travis构建](https://travis-ci.com/github/Cccc-owo/Cccc-owo.github.io)
+
 ***Clone 到本地:***
 
 >***git clone https://github.com/Cccc-owo/Cccc-owo.github.io.git --recursive***
@@ -33,4 +35,3 @@
 ***清理生成文件:***
 
 > ***hexo clean***
-
