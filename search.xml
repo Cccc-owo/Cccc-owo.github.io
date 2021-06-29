@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>BILIBILI_HELPER配置和使用</title>
-    <url>/posts/6ae0a7c7/</url>
+    <url>/posts/27440/</url>
     <content><![CDATA[<h1 id="重要提示"><a href="#重要提示" class="headerlink" title="重要提示"></a>重要提示</h1><p><strong>原仓库已恢复，请查看原仓库(<a href="https://github.com/JunzhouLiu/BILIBILI-HELPER">https://github.com/JunzhouLiu/BILIBILI-HELPER</a>)</strong></p>
 <p><del>原仓库已被<em><strong>BAN</strong></em>，有生之年再见</del></p>
 <p><del>新仓库(<a href="https://github.com/JunzhouLiu/BILIBILI-HELPER-PRE">https://github.com/JunzhouLiu/BILIBILI-HELPER-PRE</a>)</del></p>
@@ -22,7 +22,7 @@
   </entry>
   <entry>
     <title>SteamCommunity302</title>
-    <url>/posts/c47e0b89/</url>
+    <url>/posts/12440/</url>
     <content><![CDATA[<p>  因为一些<strong>不可说</strong>的原因，<em>Steam社区</em>在中国大陆处于被屏蔽的状态，很多时候看评测、创意工坊很麻烦。所以这里给大家分享一个工具<strong>「steamcommunity 302」</strong>，它可以<strong>绕过防火长城</strong>的封锁，访问Steam社区。<br><a href="https://www.dogfight360.com/blog/686/">下载点我</a></p>
 <blockquote>
 <p>一般情况推荐使用本地反代模式 / (服务器反代需要服务器支撑,请勿滥用)</p>
@@ -52,7 +52,7 @@
   </entry>
   <entry>
     <title>家用电脑搭建Minecraft服务器</title>
-    <url>/posts/2db743f6/</url>
+    <url>/posts/28140/</url>
     <content><![CDATA[<h1 id="Ⅰ-前言-INTRODUCTION"><a href="#Ⅰ-前言-INTRODUCTION" class="headerlink" title="Ⅰ. 前言 INTRODUCTION"></a>Ⅰ. 前言 INTRODUCTION</h1><p>  相信各位玩过 **Minecraft（ <em>下称MC</em>）**的玩家们，都曾想过自己开一个服务器吧。<br>  不过，大部分人或许都在一开始就放弃了。这篇文章，就是为了那些 <strong>心有余而力不足</strong>的想当服主的玩家而写的。<br>  <em>会有谁看呢(笑)</em><br>  那么，开始我们的 <strong>开服教程吧!</strong>  </p>
 <h1 id="Ⅱ-准备-PREPARATION"><a href="#Ⅱ-准备-PREPARATION" class="headerlink" title="Ⅱ. 准备 PREPARATION"></a>Ⅱ. 准备 PREPARATION</h1><p>  接下来，我会为你提供开服准备的步骤，请确保<strong>自己 &amp; 脑子</strong>在线。</p>
 <h2 id="一-配置检查"><a href="#一-配置检查" class="headerlink" title="一. 配置检查"></a>一. 配置检查</h2><ol>
@@ -192,42 +192,6 @@
       </tags>
   </entry>
   <entry>
-    <title>碎碎念1</title>
-    <url>/posts/63626/</url>
-    <content><![CDATA[<h1 id="关于QQ"><a href="#关于QQ" class="headerlink" title="关于QQ"></a>关于QQ</h1><p>我目前不打算玩QQ空间，今天这条动态只是导向Blog的。</p>
-<p>以后有事会在这上面发，谢谢</p>
-]]></content>
-      <categories>
-        <category>日记</category>
-      </categories>
-      <tags>
-        <tag>杂七杂八</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>碎碎念2</title>
-    <url>/posts/63946/</url>
-    <content><![CDATA[<p>七日后  即为中考之时</p>
-<p>预祝所有初三学子中考大捷</p>
-<hr>
-<p>另：中考完后会更新一些东西，如下</p>
-<ul>
-<li><p>使用CloudFlare Worker 反向代理网站</p>
-</li>
-<li><p>碎碎念3-我为什么选择Hexo</p>
-</li>
-<li><p>大概就这样吧</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>日记</category>
-      </categories>
-      <tags>
-        <tag>杂七杂八</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>置顶</title>
     <url>/posts/63090/</url>
     <content><![CDATA[<p>⭐⭐<strong>你好啊</strong>⭐⭐</p>
@@ -253,7 +217,7 @@
   </entry>
   <entry>
     <title>警惕马云变“恶龙”</title>
-    <url>/posts/3fe8d533/</url>
+    <url>/posts/12550/</url>
     <content><![CDATA[<h1 id="警惕马云变“恶龙”"><a href="#警惕马云变“恶龙”" class="headerlink" title="警惕马云变“恶龙”"></a>警惕马云变“恶龙”</h1><blockquote>
 <p>转载自 世界灯火 <a href="https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz=MzUxOTk0MTA4NA==&scene=124">世界灯火君</a> <em>2020/11/4</em></p>
 </blockquote>
@@ -387,6 +351,7 @@
 
 <h1 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h1><p>昨天把博客的构建从Github Actions换到了Travis。目前体验良好。</p>
 <p><strong>教训：不要忘记备份！</strong></p>
+<p>更新：记得要选择Travis的免费计划，否则会无法构建</p>
 ]]></content>
       <categories>
         <category>技术</category>
@@ -396,8 +361,83 @@
       </tags>
   </entry>
   <entry>
+    <title>随记1</title>
+    <url>/posts/48848/</url>
+    <content><![CDATA[<h1 id="关于QQ"><a href="#关于QQ" class="headerlink" title="关于QQ"></a>关于QQ</h1><p>我目前不打算玩QQ空间，今天这条动态只是导向Blog的。</p>
+<p>以后有事会在这上面发，谢谢</p>
+]]></content>
+      <categories>
+        <category>日记</category>
+      </categories>
+      <tags>
+        <tag>杂七杂八</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>随记2</title>
+    <url>/posts/49040/</url>
+    <content><![CDATA[<p>七日后  即为中考之时</p>
+<p>预祝所有初三学子中考大捷</p>
+<hr>
+<p>另：中考完后会更新一些东西，如下</p>
+<ul>
+<li><p>使用CloudFlare Worker 反向代理网站</p>
+</li>
+<li><p>随记3-我为什么选择Hexo</p>
+</li>
+<li><p>大概就这样吧</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>日记</category>
+      </categories>
+      <tags>
+        <tag>杂七杂八</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>随记3</title>
+    <url>/posts/32593/</url>
+    <content><![CDATA[<h1 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h1><p>是的，我回来了。</p>
+<p>从地狱般的题海中回来了。</p>
+<p>广东省今年数学中考，我们这一届能撞上也真是幸运。</p>
+<p>换个角度想，其实我们也是历史的见证者和创造者嘛。</p>
+<p>具体请自行搜索「2021广东中考数学」</p>
+<hr>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><p>好，进入正题。</p>
+<blockquote>
+<p>为什么不用QQ空间</p>
+</blockquote>
+<p>关于这个问题，我想先列出 <strong>「Hexo」</strong> <em>(本博客系统)</em> 与 <strong>「QQ空间」</strong> 的优劣对比：</p>
+<ol>
+<li><p>Hexo编辑自由 <em><strong>无需经过腾讯审查</strong></em> ，字数不限，图片不限；而QQ空间却字数有限200个字节即100个汉字</p>
+</li>
+<li><p>QQ空间用户群广泛，相对于Hexo这样的 <strong>个人型</strong> 博客，空间更像是 <strong>互动型</strong> 博客</p>
+</li>
+<li><p>引用<a href="https://www.zhihu.com/question/55835980">一段来自知乎的话</a>，『朋友圈别人看不到自己的点赞数，而说说别人可以看得到，朋友圈没有浏览量，而说说有浏览量，怕自己发的东西没人点赞，怕浏览的人很多却不给我点赞，怕我在乎的人浏览了我的说说但没给我点赞。怎么说， <strong>虚荣心作祟吧</strong>。』对此，不多说了。</p>
+</li>
+<li><p>互动性上，因为我<del>懒</del>没加评论模块，所以这个博客没有评论区；而QQ空间有自带的评论互动。</p>
+</li>
+<li><p>Hexo编辑较QQ空间较为麻烦，有一定操作门槛。</p>
+</li>
+<li><p>Hexo使用<a href="https://baike.baidu.com/item/markdown/3245829">MarkDown</a>进行写作，有各类如标题、列表、<strong>粗体</strong>、<em>斜体</em>、<del>删除线</del>、代码块等各种方便的<a href="https://baike.baidu.com/item/markdown/3245829?fr=aladdin#3_1">功能</a>，而这是QQ空间完全不具备的。</p>
+</li>
+<li><p><del>想到在更</del></p>
+</li>
+</ol>
+<p>如上所述，其实根本原因还是自己的喜好，对此也没什么好纠结的，毕竟 <strong>萝卜青菜各有所爱</strong> ，<strong>适合自己的才是最好的</strong>  。</p>
+]]></content>
+      <categories>
+        <category>日记</category>
+      </categories>
+      <tags>
+        <tag>杂七杂八</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>蒙牛伊利六大罪状</title>
-    <url>/posts/post_fcd0a525/</url>
+    <url>/posts/10312/</url>
     <content><![CDATA[<h1 id="备份：原文来自微信公众号『世界灯火』"><a href="#备份：原文来自微信公众号『世界灯火』" class="headerlink" title="备份：原文来自微信公众号『世界灯火』"></a>备份：原文来自微信公众号『世界灯火』</h1><p><strong>原作者：王小七</strong></p>
 <img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/post_post_fcd0a525/1.jpg" style="zoom:50%;" />
 
