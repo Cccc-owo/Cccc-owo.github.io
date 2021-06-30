@@ -1,11 +1,12 @@
 ---
 title: 关于APP
-description: 
 tags:
   - 博客
 categories:
   - 技术
+abbrlink: 16181
 date: 2021-06-30 12:59:27
+description:
 subtitle:
 ---
 
