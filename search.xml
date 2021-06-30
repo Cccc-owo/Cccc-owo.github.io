@@ -88,6 +88,21 @@
       </tags>
   </entry>
   <entry>
+    <title>关于APP</title>
+    <url>/posts/16181/</url>
+    <content><![CDATA[<p>本博客现有由「Fushion App」开发的<a href="https://cycraft.lanzoui.com/iQ2eQqupumd">APP</a></p>
+<p>目前APP处于开发中，但完全足以使用</p>
+<p>另外，这是<a href="https://blog.cccc-owo.xyz/">博客主地址https://blog.cccc-owo.xyz</a>和<a href="https://b.cccc-owo.xyz/">加速备用地址https://b.cccc-owo.xyz</a></p>
+<p>APP使用的是加速备用地址，以便访问。原理详见<a href="https://b.cccc-owo.xyz/posts/63425/">CloudFlare Workers反向代理网站</a></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>博客</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>家用电脑搭建Minecraft服务器</title>
     <url>/posts/28140/</url>
     <content><![CDATA[<h1 id="Ⅰ-前言-INTRODUCTION"><a href="#Ⅰ-前言-INTRODUCTION" class="headerlink" title="Ⅰ. 前言 INTRODUCTION"></a>Ⅰ. 前言 INTRODUCTION</h1><p>  相信各位玩过 **Minecraft（ <em>下称MC</em>）**的玩家们，都曾想过自己开一个服务器吧。<br>  不过，大部分人或许都在一开始就放弃了。这篇文章，就是为了那些 <strong>心有余而力不足</strong>的想当服主的玩家而写的。<br>  <em>会有谁看呢(笑)</em><br>  那么，开始我们的 <strong>开服教程吧!</strong>  </p>
