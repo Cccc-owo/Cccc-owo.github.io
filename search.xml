@@ -23,7 +23,7 @@
   <entry>
     <title>CloudFlare Workers反向代理网站</title>
     <url>/posts/63425/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>你是否会想要访问 <strong>某些被墙的网站</strong> (如谷歌)时但因各种原因不便访问呢？</p>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>你是否会想要访问 <strong>某些被墙的网站</strong> (如谷歌)时因各种原因不便访问呢？</p>
 <p>在这里，我推荐大家一个临时的解决方案。</p>
 <p>那就是CloudFlare Workers，下面让我们看看吧。</p>
 <h1 id="原理简介"><a href="#原理简介" class="headerlink" title="原理简介"></a>原理简介</h1><p>详见<a href="https://baike.baidu.com/item/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/7793488">反向代理</a>、及<a href="https://www.cloudflare.com/zh-cn/products/workers-kv">CloudFlare Workers</a></p>
@@ -391,8 +391,9 @@
   <entry>
     <title>随记1</title>
     <url>/posts/48848/</url>
-    <content><![CDATA[<h1 id="关于QQ"><a href="#关于QQ" class="headerlink" title="关于QQ"></a>关于QQ</h1><p>我目前不打算玩QQ空间，今天这条动态只是导向Blog的。</p>
-<p>以后有事会在这上面发，谢谢</p>
+    <content><![CDATA[<h1 id="关于QQ"><a href="#关于QQ" class="headerlink" title="关于QQ"></a><del>关于QQ</del></h1><p><del>我目前不打算玩QQ空间，今天这条动态只是导向Blog的。</del></p>
+<p><del>以后有事会在这上面发，谢谢</del></p>
+<p>没事了</p>
 ]]></content>
       <categories>
         <category>日记</category>
