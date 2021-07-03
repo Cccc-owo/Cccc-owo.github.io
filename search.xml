@@ -27,26 +27,26 @@
 <p>在这里，我推荐大家一个临时的解决方案。</p>
 <p>那就是CloudFlare Workers，下面让我们看看吧。</p>
 <h1 id="原理简介"><a href="#原理简介" class="headerlink" title="原理简介"></a>原理简介</h1><p>详见<a href="https://baike.baidu.com/item/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/7793488">反向代理</a>、及<a href="https://www.cloudflare.com/zh-cn/products/workers-kv">CloudFlare Workers</a></p>
-<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="注册（已有账号可跳过）"><a href="#注册（已有账号可跳过）" class="headerlink" title="注册（已有账号可跳过）"></a>注册（已有账号可跳过）</h2><p><img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/CloudFlareWorkers%E5%8F%8D%E4%BB%A3%E7%BD%91%E7%AB%99/1.png" alt="1"></p>
+<h1 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h1><h2 id="注册（已有账号可跳过）"><a href="#注册（已有账号可跳过）" class="headerlink" title="注册（已有账号可跳过）"></a>注册（已有账号可跳过）</h2><p><img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/CloudFlareWorkers%E5%8F%8D%E4%BB%A3%E7%BD%91%E7%AB%99/1.png" alt="1"></p>
 <p>如图1，打开<a href="https://dash.cloudflare.com/sign-up">注册页面</a>进行注册</p>
-<h2 id="配置Workers"><a href="#配置Workers" class="headerlink" title="配置Workers"></a>配置Workers</h2><p><img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/CloudFlareWorkers%E5%8F%8D%E4%BB%A3%E7%BD%91%E7%AB%99/2.png" alt="2"></p>
+<h2 id="配置Workers"><a href="#配置Workers" class="headerlink" title="配置Workers"></a>配置Workers</h2><p><img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/CloudFlareWorkers%E5%8F%8D%E4%BB%A3%E7%BD%91%E7%AB%99/2.png" alt="2"></p>
 <p>如图2，单击登陆后主页右侧栏中的Workers</p>
 <p>进入之后，单击「计划」并选择「Free」计划。如图3。</p>
-<p><img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/CloudFlareWorkers%E5%8F%8D%E4%BB%A3%E7%BD%91%E7%AB%99/3.png" alt="3"></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/CloudFlareWorkers%E5%8F%8D%E4%BB%A3%E7%BD%91%E7%AB%99/3.png" alt="3"></p>
 <p>接着新建一个 Workers 子域名，如图4。</p>
-<p><img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/CloudFlareWorkers%E5%8F%8D%E4%BB%A3%E7%BD%91%E7%AB%99/4.png" alt="4"></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/CloudFlareWorkers%E5%8F%8D%E4%BB%A3%E7%BD%91%E7%AB%99/4.png" alt="4"></p>
 <p>搞定以上步骤后，回到Workers主页面，并单击创建Worker。如图5。</p>
-<p><img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/CloudFlareWorkers%E5%8F%8D%E4%BB%A3%E7%BD%91%E7%AB%99/5.png" alt="5"></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/CloudFlareWorkers%E5%8F%8D%E4%BB%A3%E7%BD%91%E7%AB%99/5.png" alt="5"></p>
 <p>接着将如下代码复制入左边的脚本编辑处。</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">// Website you intended to retrieve for users.</span></span><br><span class="line"><span class="keyword">const</span> upstream = <span class="string">&#x27;google.com&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Custom pathname for the upstream website.</span></span><br><span class="line"><span class="keyword">const</span> upstream_path = <span class="string">&#x27;/&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Website you intended to retrieve for users using mobile devices.</span></span><br><span class="line"><span class="keyword">const</span> upstream_mobile = <span class="string">&#x27;google.com&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Countries and regions where you wish to suspend your service.</span></span><br><span class="line"><span class="keyword">const</span> blocked_region = []</span><br><span class="line"></span><br><span class="line"><span class="comment">// IP addresses which you wish to block from using your service.</span></span><br><span class="line"><span class="keyword">const</span> blocked_ip_address = [<span class="string">&#x27;0.0.0.0&#x27;</span>, <span class="string">&#x27;127.0.0.1&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">// Whether to use HTTPS protocol for upstream address.</span></span><br><span class="line"><span class="keyword">const</span> https = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Whether to disable cache.</span></span><br><span class="line"><span class="keyword">const</span> disable_cache = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Replace texts.</span></span><br><span class="line"><span class="keyword">const</span> replace_dict = &#123;</span><br><span class="line">    <span class="string">&#x27;$upstream&#x27;</span>: <span class="string">&#x27;$custom_domain&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;//google.com&#x27;</span>: <span class="string">&#x27;&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">addEventListener(<span class="string">&#x27;fetch&#x27;</span>, <span class="function"><span class="params">event</span> =&gt;</span> &#123;</span><br><span class="line">    event.respondWith(fetchAndApply(event.request));</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">fetchAndApply</span>(<span class="params">request</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> region = request.headers.get(<span class="string">&#x27;cf-ipcountry&#x27;</span>).toUpperCase();</span><br><span class="line">    <span class="keyword">const</span> ip_address = request.headers.get(<span class="string">&#x27;cf-connecting-ip&#x27;</span>);</span><br><span class="line">    <span class="keyword">const</span> user_agent = request.headers.get(<span class="string">&#x27;user-agent&#x27;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> response = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">let</span> url = <span class="keyword">new</span> URL(request.url);</span><br><span class="line">    <span class="keyword">let</span> url_hostname = url.hostname;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (https == <span class="literal">true</span>) &#123;</span><br><span class="line">        url.protocol = <span class="string">&#x27;https:&#x27;</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        url.protocol = <span class="string">&#x27;http:&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">await</span> device_status(user_agent)) &#123;</span><br><span class="line">        <span class="keyword">var</span> upstream_domain = upstream;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">var</span> upstream_domain = upstream_mobile;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    url.host = upstream_domain;</span><br><span class="line">    <span class="keyword">if</span> (url.pathname == <span class="string">&#x27;/&#x27;</span>) &#123;</span><br><span class="line">        url.pathname = upstream_path;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        url.pathname = upstream_path + url.pathname;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (blocked_region.includes(region)) &#123;</span><br><span class="line">        response = <span class="keyword">new</span> Response(<span class="string">&#x27;Access denied: WorkersProxy is not available in your region yet.&#x27;</span>, &#123;</span><br><span class="line">            <span class="attr">status</span>: <span class="number">403</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (blocked_ip_address.includes(ip_address)) &#123;</span><br><span class="line">        response = <span class="keyword">new</span> Response(<span class="string">&#x27;Access denied: Your IP address is blocked by WorkersProxy.&#x27;</span>, &#123;</span><br><span class="line">            <span class="attr">status</span>: <span class="number">403</span></span><br><span class="line">        &#125;);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> method = request.method;</span><br><span class="line">        <span class="keyword">let</span> request_headers = request.headers;</span><br><span class="line">        <span class="keyword">let</span> new_request_headers = <span class="keyword">new</span> Headers(request_headers);</span><br><span class="line"></span><br><span class="line">        new_request_headers.set(<span class="string">&#x27;Host&#x27;</span>, upstream_domain);</span><br><span class="line">        new_request_headers.set(<span class="string">&#x27;Referer&#x27;</span>, url.protocol + <span class="string">&#x27;//&#x27;</span> + url_hostname);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> original_response = <span class="keyword">await</span> fetch(url.href, &#123;</span><br><span class="line">            <span class="attr">method</span>: method,</span><br><span class="line">            <span class="attr">headers</span>: new_request_headers,</span><br><span class="line">            <span class="attr">body</span>: request.body</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">        connection_upgrade = new_request_headers.get(<span class="string">&quot;Upgrade&quot;</span>);</span><br><span class="line">        <span class="keyword">if</span> (connection_upgrade &amp;&amp; connection_upgrade.toLowerCase() == <span class="string">&quot;websocket&quot;</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> original_response;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> original_response_clone = original_response.clone();</span><br><span class="line">        <span class="keyword">let</span> original_text = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">let</span> response_headers = original_response.headers;</span><br><span class="line">        <span class="keyword">let</span> new_response_headers = <span class="keyword">new</span> Headers(response_headers);</span><br><span class="line">        <span class="keyword">let</span> status = original_response.status;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span> (disable_cache) &#123;</span><br><span class="line">   new_response_headers.set(<span class="string">&#x27;Cache-Control&#x27;</span>, <span class="string">&#x27;no-store&#x27;</span>);</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">        new_response_headers.set(<span class="string">&#x27;access-control-allow-origin&#x27;</span>, <span class="string">&#x27;*&#x27;</span>);</span><br><span class="line">        new_response_headers.set(<span class="string">&#x27;access-control-allow-credentials&#x27;</span>, <span class="literal">true</span>);</span><br><span class="line">        new_response_headers.delete(<span class="string">&#x27;content-security-policy&#x27;</span>);</span><br><span class="line">        new_response_headers.delete(<span class="string">&#x27;content-security-policy-report-only&#x27;</span>);</span><br><span class="line">        new_response_headers.delete(<span class="string">&#x27;clear-site-data&#x27;</span>);</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">if</span> (new_response_headers.get(<span class="string">&quot;x-pjax-url&quot;</span>)) &#123;</span><br><span class="line">            new_response_headers.set(<span class="string">&quot;x-pjax-url&quot;</span>, response_headers.get(<span class="string">&quot;x-pjax-url&quot;</span>).replace(<span class="string">&quot;//&quot;</span> + upstream_domain, <span class="string">&quot;//&quot;</span> + url_hostname));</span><br><span class="line">        &#125;</span><br><span class="line">  </span><br><span class="line">        <span class="keyword">const</span> content_type = new_response_headers.get(<span class="string">&#x27;content-type&#x27;</span>);</span><br><span class="line">        <span class="keyword">if</span> (content_type != <span class="literal">null</span> &amp;&amp; content_type.includes(<span class="string">&#x27;text/html&#x27;</span>) &amp;&amp; content_type.includes(<span class="string">&#x27;UTF-8&#x27;</span>)) &#123;</span><br><span class="line">            original_text = <span class="keyword">await</span> replace_response_text(original_response_clone, upstream_domain, url_hostname);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            original_text = original_response_clone.body</span><br><span class="line">        &#125;</span><br><span class="line">  </span><br><span class="line">        response = <span class="keyword">new</span> Response(original_text, &#123;</span><br><span class="line">            status,</span><br><span class="line">            <span class="attr">headers</span>: new_response_headers</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> response;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">replace_response_text</span>(<span class="params">response, upstream_domain, host_name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> text = <span class="keyword">await</span> response.text()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> i, j;</span><br><span class="line">    <span class="keyword">for</span> (i <span class="keyword">in</span> replace_dict) &#123;</span><br><span class="line">        j = replace_dict[i]</span><br><span class="line">        <span class="keyword">if</span> (i == <span class="string">&#x27;$upstream&#x27;</span>) &#123;</span><br><span class="line">            i = upstream_domain</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (i == <span class="string">&#x27;$custom_domain&#x27;</span>) &#123;</span><br><span class="line">            i = host_name</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (j == <span class="string">&#x27;$upstream&#x27;</span>) &#123;</span><br><span class="line">            j = upstream_domain</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (j == <span class="string">&#x27;$custom_domain&#x27;</span>) &#123;</span><br><span class="line">            j = host_name</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> re = <span class="keyword">new</span> <span class="built_in">RegExp</span>(i, <span class="string">&#x27;g&#x27;</span>)</span><br><span class="line">        text = text.replace(re, j);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> text;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">device_status</span>(<span class="params">user_agent_info</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> agents = [<span class="string">&quot;Android&quot;</span>, <span class="string">&quot;iPhone&quot;</span>, <span class="string">&quot;SymbianOS&quot;</span>, <span class="string">&quot;Windows Phone&quot;</span>, <span class="string">&quot;iPad&quot;</span>, <span class="string">&quot;iPod&quot;</span>];</span><br><span class="line">    <span class="keyword">var</span> flag = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> v = <span class="number">0</span>; v &lt; agents.length; v++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (user_agent_info.indexOf(agents[v]) &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            flag = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> flag;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>配置完成后，修改Worker名称，点击「保存并部署」。如图6。</p>
-<p><img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/CloudFlareWorkers%E5%8F%8D%E4%BB%A3%E7%BD%91%E7%AB%99/6.png" alt="6"></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/CloudFlareWorkers%E5%8F%8D%E4%BB%A3%E7%BD%91%E7%AB%99/6.png" alt="6"></p>
 <p>这样就大功告成了，以后就可以随时随地谷歌一下了。</p>
 <h2 id="成品展示"><a href="#成品展示" class="headerlink" title="成品展示"></a>成品展示</h2><p>Demo:<a href="https://google.youwant.workers.dev/">https://google.youwant.workers.dev/</a></p>
 <p><a href="https://git.youwant.workers.dev/">稍微修改后访问Github</a></p>
 <p>如图7</p>
-<p><img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/CloudFlareWorkers%E5%8F%8D%E4%BB%A3%E7%BD%91%E7%AB%99/7.png" alt="7"></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/CloudFlareWorkers%E5%8F%8D%E4%BB%A3%E7%BD%91%E7%AB%99/7.png" alt="7"></p>
 <p>温馨提示：使用Worker反代的网站 <strong>无法使用Cookies</strong> ，简单来说就是搜索记录不会保存，账号无法登录。并且 <strong>不要滥用</strong> Worker代理!</p>
 <h1 id="尾声"><a href="#尾声" class="headerlink" title="尾声"></a>尾声</h1><p>当然Workers的功能远远不止如此，也不仅仅可以反代Google <strong>这样的静态网站</strong> ，它还有更多的地方等待着我们探索。多思考、多实践、多查找，这是很重要的。</p>
 ]]></content>
@@ -115,7 +115,7 @@
 <p>如果 <strong>4.0GB ≤ RAM ≤ 6.0GB</strong>，也恭喜你，还是 <strong>有可能</strong>开服的。  </p>
 <p>至于运行内存 <em>小于4.0GB</em>，我只能说：真不知道你是 <strong>怎么</strong>把这台电脑 <strong>用下去的</strong>……</p>
 <p><strong>图示：</strong></p>
-<img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/开服/1.png" alt="RAM" style="zoom: 80%;" /></li>
+<img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/开服/1.png" alt="RAM" style="zoom: 80%;" /></li>
 </ol>
 <h2 id="二-JAVA-配置"><a href="#二-JAVA-配置" class="headerlink" title="二. JAVA 配置"></a>二. JAVA 配置</h2><p>  众所周知(bushi)， <strong>Minecraft:Java Edition</strong>( <em>就是PC版</em>)是 <strong>由JAVA语言编写</strong>的。所以对于MC服务器来说，JAVA也是必不可少的。  </p>
 <hr>
@@ -130,7 +130,7 @@
 <p>  <a href="https://papermc.io/downloads">下载点我</a>，如有其他版本或其他核心服务端需求，请在Github仓库Issue或个人QQ咨询。  </p>
 <h2 id="二-配置"><a href="#二-配置" class="headerlink" title="二.配置"></a>二.配置</h2><h3 id="1-结束了"><a href="#1-结束了" class="headerlink" title="1.结束了?"></a>1.结束了?</h3><ol>
 <li>在你喜欢(例如D盘)的地方新建一个文件夹( <strong>建议文件夹名字不要为中文或特殊符号</strong>)。</li>
-<li>把 <strong>下载的核心</strong>(如下图)放入新建的文件夹中。   <img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/开服/3.png" alt="3"  /></li>
+<li>把 <strong>下载的核心</strong>(如下图)放入新建的文件夹中。   <img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/开服/3.png" alt="3"  /></li>
 <li>在文件夹中 <strong>右键新建一个文本文档</strong>，并打开编辑。把下面的代码粘贴到txt中  （可根据需要修改）</li>
 </ol>
 <figure class="highlight bat"><table><tr><td class="code"><pre><span class="line">@<span class="built_in">ECHO</span> OFF</span><br><span class="line">java -Xms1G -Xmx1G -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -XX:MaxGCPauseMillis=<span class="number">100</span> -XX:+DisableExplicitGC -XX:TargetSurvivorRatio=<span class="number">90</span> -XX:G1NewSizePercent=<span class="number">50</span> -XX:G1MaxNewSizePercent=<span class="number">80</span> -XX:G1MixedGCLiveThresholdPercent=<span class="number">35</span> -XX:+AlwaysPreTouch -XX:+ParallelRefProcEnabled -Dusing.aikars.flags=mcflags.emc.gs -jar <span class="variable">!!!</span>下载的核心文件名<span class="variable">!!!</span>.jar --nogui</span><br><span class="line"><span class="built_in">ECHO</span> SERVER CLOSED!</span><br><span class="line"><span class="built_in">PAUSE</span>&gt;<span class="built_in">NUL</span></span><br></pre></td></tr></table></figure>
@@ -139,7 +139,7 @@
 <li>其中，第二行最后的 <strong>「!!!下载的核心文件名!!!」需要改为核心文件名，切记！</strong>  </li>
 <li>接下来， <strong>保存并关闭文本文档</strong>。把文本文档重命名为「Start**.bat**」，改完后请确认文件类型为「 <strong>Windows 批处理文件</strong>」，如不是，请百度<a href="https://www.baidu.com/s?wd=%E6%9B%B4%E6%94%B9%E6%96%87%E4%BB%B6%E6%89%A9%E5%B1%95%E5%90%8D">「更改文件拓展名」</a>。  </li>
 </ol>
-<p><img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/%E5%BC%80%E6%9C%8D/4.png" alt="4"></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/%E5%BC%80%E6%9C%8D/4.png" alt="4"></p>
 <h3 id="2-结束了"><a href="#2-结束了" class="headerlink" title="2.结束了?"></a>2.结束了?</h3><ol>
 <li>左键双击「Start.bat」等待五秒左右，不用管命令行(下称 <strong>CMD</strong>)出现什么字，按下任意键将其关闭。  </li>
 <li>现在可见文件夹里又 <strong>多了许多文件</strong>，不要慌，找到 <strong>「eula.txt」</strong>并打开。你可能会看到 <strong>如下</strong>内容👇  </li>
@@ -151,20 +151,20 @@
 </ol>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#By changing the setting below to TRUE you are indicating your agreement to our EULA (https://account.mojang.com/documents/minecraft_eula).</span><br><span class="line">#Sat Feb 29 20:10:04 CST 2020</span><br><span class="line">eula=true</span><br></pre></td></tr></table></figure>
 
-<p>  <img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/%E5%BC%80%E6%9C%8D/5.png" alt="5"><br>4. 保存并关闭文档，此时再次打开「Start.bat」。等待一分钟左右的时间， *<em>如果正确按步骤来，那服务器已经 <em>好了</em>。*</em> <em>(我好了（挨打）)</em><br>    <img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/%E5%BC%80%E6%9C%8D/6.png" alt="6"><br>5. 如果是盗版玩家，请用「记事本」打开「server.properties」，更改44行的「true」为「false」。如下图<br>    <img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/%E5%BC%80%E6%9C%8D/7.png" alt="New"></p>
+<p>  <img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/%E5%BC%80%E6%9C%8D/5.png" alt="5"><br>4. 保存并关闭文档，此时再次打开「Start.bat」。等待一分钟左右的时间， *<em>如果正确按步骤来，那服务器已经 <em>好了</em>。*</em> <em>(我好了（挨打）)</em><br>    <img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/%E5%BC%80%E6%9C%8D/6.png" alt="6"><br>5. 如果是盗版玩家，请用「记事本」打开「server.properties」，更改44行的「true」为「false」。如下图<br>    <img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/%E5%BC%80%E6%9C%8D/7.png" alt="New"></p>
 <h4 id="EX·服务器常用指令"><a href="#EX·服务器常用指令" class="headerlink" title="EX·服务器常用指令"></a>EX·服务器常用指令</h4><p>（建议先在后台取得OP权限）  </p>
 <blockquote>
 <p>后台可不加「 / 」，游戏内需带「 / 」<br>/op &lt;玩家&gt;          给某个玩家OP<br>/deop &lt;玩家&gt;         取消某个玩家的OP<br>/gamemode survival「或」creative「或」adventure「或」spectator &lt;玩家&gt;<br>切换某个玩家为生存模式/创造模式/冒险模式/旁观者模式<br>/whitelist add &lt;玩家&gt;     把某个玩家加入白名单<br>/whitelist list        查看白名单列表<br>/whitelist off        关闭白名单<br>/whitelist on        开启白名单<br>/whitelist reload       重载白名单<br>/whitelist remove &lt;玩家&gt;     把某个玩家移出白名单<br>/ban &lt;玩家&gt;            封禁某个玩家<br>/ban-ip <IP>              封禁某个IP地址<br>/pardon &lt;玩家&gt;       解封某个玩家<br>/pardon-ip &lt;地址&gt;       解封某个IP地址<br>/tell &lt;玩家&gt; &lt;信息…&gt;     与某玩家私聊<br>/msg &lt;玩家&gt; &lt;信息…&gt;      同上<br>/w &lt;玩家&gt; &lt;信息…&gt;      同上</p>
 </blockquote>
 <h1 id="Ⅳ-游玩-Play"><a href="#Ⅳ-游玩-Play" class="headerlink" title="Ⅳ. 游玩 Play"></a>Ⅳ. 游玩 Play</h1><h2 id="一-局域网内游玩"><a href="#一-局域网内游玩" class="headerlink" title="一.局域网内游玩"></a>一.局域网内游玩</h2><h3 id="1-查询内网IP"><a href="#1-查询内网IP" class="headerlink" title="1.查询内网IP"></a>1.查询内网IP</h3><ol>
 <li>按下 <strong>「Win键」</strong>(就是键盘上打开开始菜单的按键) +  <strong>「R」</strong>，输入 <strong>「CMD」</strong>  </li>
-<li>在 <strong>「CMD」</strong>中输入<strong>「ipconfig」</strong>，找到「本地连接」或「以太网」中的<strong>「IPv4地址」</strong>，把右边的一串例如<strong>「192.168.x.xxx」</strong> <em>或是其他的IP地址</em>的数字记下来，这就是 <strong>你的内网IP地址</strong>。<br> <img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/%E5%BC%80%E6%9C%8D/8.png" alt="懂自懂"></li>
+<li>在 <strong>「CMD」</strong>中输入<strong>「ipconfig」</strong>，找到「本地连接」或「以太网」中的<strong>「IPv4地址」</strong>，把右边的一串例如<strong>「192.168.x.xxx」</strong> <em>或是其他的IP地址</em>的数字记下来，这就是 <strong>你的内网IP地址</strong>。<br> <img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/%E5%BC%80%E6%9C%8D/8.png" alt="懂自懂"></li>
 </ol>
 <h3 id="2-加入服务器"><a href="#2-加入服务器" class="headerlink" title="2.加入服务器"></a>2.加入服务器</h3><ol>
 <li>打开对应版本的游戏，单击 <strong>「多人游戏」</strong>–&gt; <strong>「添加服务器」</strong></li>
 <li>在地址栏中，填入「（内网）IP地址 <strong>:25565</strong>」，完成并在服务器开启时 *(Start.bat运行时)*加入。 <em>（游戏不用我教怎么启动吧）</em>  </li>
 </ol>
-<p><strong>现在，你就拥有了一个<em>属于你自己</em>的MC服务器</strong><br><img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/%E5%BC%80%E6%9C%8D/9.png" alt="OHHHH!!!"></p>
+<p><strong>现在，你就拥有了一个<em>属于你自己</em>的MC服务器</strong><br><img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/%E5%BC%80%E6%9C%8D/9.png" alt="OHHHH!!!"></p>
 <h2 id="二-一起玩-Play-together"><a href="#二-一起玩-Play-together" class="headerlink" title="二. 一起玩 Play together"></a>二. 一起玩 Play together</h2><p>  现在，你已经可以让 <strong>连上你家网络的小伙伴</strong>ヽ(￣ω￣(￣ω￣〃)ゝ 一起玩耍了。但 <strong>其他身在远方的小伙伴却不行</strong>，这一步就是为了解决这种情况而存在的。请继续向下看👇</p>
 <hr>
 <h3 id="内网穿透"><a href="#内网穿透" class="headerlink" title="内网穿透"></a>内网穿透</h3><h4 id="Windows-7-安装运行库"><a href="#Windows-7-安装运行库" class="headerlink" title="Windows 7 安装运行库"></a><a href="https://doc.natfrp.com/#/launcher/usage">Windows 7 安装运行库</a></h4><blockquote>
@@ -217,7 +217,7 @@
 </blockquote>
 <h2 id="三-大功告成"><a href="#三-大功告成" class="headerlink" title="三. 大功告成"></a>三. 大功告成</h2><p><strong>We Finished!!!</strong>  </p>
 <p><em>获得成就：结束了。</em>  </p>
-<p><img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/%E5%BC%80%E6%9C%8D/10.png" alt="New"></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/%E5%BC%80%E6%9C%8D/10.png" alt="New"></p>
 <h1 id="Ⅴ-结尾-The-End"><a href="#Ⅴ-结尾-The-End" class="headerlink" title="Ⅴ. 结尾 The End"></a>Ⅴ. 结尾 The End</h1><p>  祝贺你， <strong>你的服务器已经可以让所有人玩到了</strong> *(如果有服务器地址 **[外网]**的话)*。也很感谢你耐心地看完这篇文章， <em>本文也许会有纰漏或错误</em>，欢迎来修正。如果你觉得本文对你有帮助，可以开心地与你的小伙伴 <strong>一起</strong>玩MC，也可以把这篇文章 <strong>分享</strong>给 <strong>有需要的人</strong>；当然，如果没能帮到你，那…你 <strong>自己加油</strong>💪吧。<br>  就这样，再见了ヾ(￣▽￣)。</p>
 ]]></content>
       <categories>
@@ -256,18 +256,18 @@
 <p>原文链接:<a href="https://mp.weixin.qq.com/s/U8q24L1zoPriJ0VmVDllBw">https://mp.weixin.qq.com/s/U8q24L1zoPriJ0VmVDllBw</a></p>
 <p><strong>蚂蚁集团至今才被约谈、限制，我是很意外的。</strong></p>
 <p>11月2日，中国人民银行、中国银保监会、中国证监会和国家外汇管理局联合约谈蚂蚁集团高管，缘起于马云的一场演讲，在这场演讲中，马云风光满面，可以看出他对蚂蚁集团即将上市A股的狂喜情绪。</p>
-<p><img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/%E8%AD%A6%E6%83%95%E9%A9%AC%E4%BA%91%E5%8F%98%E6%81%B6%E9%BE%99/1.webp"></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/%E8%AD%A6%E6%83%95%E9%A9%AC%E4%BA%91%E5%8F%98%E6%81%B6%E9%BE%99/1.webp"></p>
 <p>以至于，在这场演讲中，他一改往日迎合政策的风范，开始不断抨击，在这场演讲中，马云称银行为<strong>当铺</strong>、中国<strong>没有金融系统</strong>、不存在系统性风险、还把主张风险监管的巴塞尔协议说成<strong>老人协议</strong>、要求<strong>放开监管</strong>，并称：<strong>如果银行不改变，我们就改变银行。</strong></p>
 <p>或许是蚂蚁即将成为人类有史以来最大的IPO定价、总市值高达3130亿美元，即将一举超过“工农中建交邮”六大国有银行，甚至超过上市银行市值第一的摩根大通的喜悦，冲昏了马云的头脑，觉得世界都唾手可得，才会说出如此冒险的话。</p>
 <p>如他所愿，没两天，蚂蚁高管就被4家机构<strong>联合约谈。</strong></p>
 <p>11月3日晚，上海证券交易所发布公告称，蚂蚁集团将暂缓上市。</p>
-<p><img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/%E8%AD%A6%E6%83%95%E9%A9%AC%E4%BA%91%E5%8F%98%E6%81%B6%E9%BE%99/2.png"></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/%E8%AD%A6%E6%83%95%E9%A9%AC%E4%BA%91%E5%8F%98%E6%81%B6%E9%BE%99/2.png"></p>
 <p>而后蚂蚁集团也发布回应：</p>
 <blockquote>
 <p>蚂蚁集团会深入落实约谈意见，继续沿着<strong>“稳妥创新、拥抱监管、服务实体、开放共赢”</strong>的十六字指导方针，继续提升普惠服务能力，助力经济和民生发展。</p>
 </blockquote>
 <p>网友戏称为<strong>“马已经服”。</strong></p>
-<p><img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/%E8%AD%A6%E6%83%95%E9%A9%AC%E4%BA%91%E5%8F%98%E6%81%B6%E9%BE%99/3.png"></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/%E8%AD%A6%E6%83%95%E9%A9%AC%E4%BA%91%E5%8F%98%E6%81%B6%E9%BE%99/3.png"></p>
 <p>不管你对马云被约谈作何态度，但我直接拍手鼓掌。</p>
 <p>之前马云抨击银行的视频发布后，有很多人为之点赞，毕竟马云字里行间都在说我要<strong>“普惠人民”、“普惠中小商家</strong>”，很多人夸不愧是马云，有如此大的眼界与格局，甚至还有人说马云是真心想<strong>为人民做事</strong>。倒也真映了“<strong>人民富豪</strong>”的称号。</p>
 <p>只看表面，的确像是马云想要造福中小商户，但这种资本家常用的话术<strong>你也敢信？</strong></p>
@@ -304,19 +304,19 @@
 <p>实际上，蚂蚁金服的主要业务为三个部分，支付业务、消金业务（贷款）、财富业务（理财）。</p>
 <p>你以为支付宝靠着支付和淘宝赚钱，但支付宝其实靠<strong>“给年轻人放贷款”挣钱。</strong></p>
 <p>如今，囊括花呗、借呗的微贷业务，已经成为蚂蚁最重要的增长引擎：</p>
-<p><img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/%E8%AD%A6%E6%83%95%E9%A9%AC%E4%BA%91%E5%8F%98%E6%81%B6%E9%BE%99/4.webp"></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/%E8%AD%A6%E6%83%95%E9%A9%AC%E4%BA%91%E5%8F%98%E6%81%B6%E9%BE%99/4.webp"></p>
 <p><strong>从广告铺设上</strong>，你也能看出蚂蚁对花呗、借呗的重视，如今目之所及，到处是花呗广告，但你却几乎没见过支付宝别的推广，为什么？</p>
 <p>因为花呗、借呗，已经成为蚂蚁最重要的香饽饽，想继续扩大市场赚钱，就必须为花呗借呗开路。</p>
 <p><strong>如何扩大？</strong></p>
 <p>蚂蚁靠两手抓，一方面不断打广告，这一点我在文章<a href="http://mp.weixin.qq.com/s?__biz=MzUxOTk0MTA4NA==&mid=2247488704&idx=1&sn=8b5e9ffe684185a708d1d56a4ea77fc9&chksm=f9f0aa73ce872365c19f30e1f885c69128e18d8e2b219d41f4fc1db0b46e5b9c55abbf7c2fa7&scene=21#wechat_redirect">《为什么劝人花钱的花呗广告，总让人很不舒服？》</a>已经详细抨击过，他们把爱情、亲情、友情、自我价值实现这些本该纯粹的情感全部物化，与金钱全部挂钩，让一切都变成一场场交易，仿佛不花钱就不能得来幸福。</p>
-<p><img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/%E8%AD%A6%E6%83%95%E9%A9%AC%E4%BA%91%E5%8F%98%E6%81%B6%E9%BE%99/5.webp"></p>
-<p><img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/%E8%AD%A6%E6%83%95%E9%A9%AC%E4%BA%91%E5%8F%98%E6%81%B6%E9%BE%99/6.webp"></p>
-<p><img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/%E8%AD%A6%E6%83%95%E9%A9%AC%E4%BA%91%E5%8F%98%E6%81%B6%E9%BE%99/7.webp"></p>
-<p><img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/%E8%AD%A6%E6%83%95%E9%A9%AC%E4%BA%91%E5%8F%98%E6%81%B6%E9%BE%99/8.webp"></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/%E8%AD%A6%E6%83%95%E9%A9%AC%E4%BA%91%E5%8F%98%E6%81%B6%E9%BE%99/5.webp"></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/%E8%AD%A6%E6%83%95%E9%A9%AC%E4%BA%91%E5%8F%98%E6%81%B6%E9%BE%99/6.webp"></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/%E8%AD%A6%E6%83%95%E9%A9%AC%E4%BA%91%E5%8F%98%E6%81%B6%E9%BE%99/7.webp"></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/%E8%AD%A6%E6%83%95%E9%A9%AC%E4%BA%91%E5%8F%98%E6%81%B6%E9%BE%99/8.webp"></p>
 <p>它告诉你：<strong>你必须花多余的钱，并且必须透支才能获得幸福。</strong></p>
 <p>用这种方式不断刺激你超前消费，把钱包全部交给资本家。整个社会的价值观被颠覆，年轻人开始步上上世纪美国年轻人的后尘：成为资本家的<strong>借贷奴隶。</strong></p>
 <p>从数据上我们也能看出这一点，在所有贷款业务中，蚂蚁用于中小微企业贷款的钱，只有4000多亿，其余一万七千多亿，都是用在消费贷上。</p>
-<p><img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/%E8%AD%A6%E6%83%95%E9%A9%AC%E4%BA%91%E5%8F%98%E6%81%B6%E9%BE%99/9.webp"></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/%E8%AD%A6%E6%83%95%E9%A9%AC%E4%BA%91%E5%8F%98%E6%81%B6%E9%BE%99/9.webp"></p>
 <p>换句话说，<strong>有将近80%的钱，都被用来努力把当下消费者转变为借贷奴隶。</strong>这也是为什么你在大街上看到的都是花呗等消费贷广告，却几乎没见过扶植中小微企业的广告。</p>
 <p>注意，<strong>你，才是蚂蚁真正想要洗脑的对象。</strong></p>
 <p><strong>另一方面，他们又不断资产证券化</strong>，扩大贷款资金池，但实际上资金池内充满了一触即破的泡沫。</p>
@@ -332,7 +332,7 @@
 <p>什么是资产证券化？</p>
 <p>B站一个朋友@梦涛天做了一个非常形象的描述：</p>
 <p>举一个简单的例子。假设你跟支付宝的借呗借了1万元，支付宝对你享有1万元的债权。正常逻辑下，支付宝等着你还钱，再收你点利息，整个交易到此为止。但在资产证券化操作下，支付宝可以把对你享有的1万元债权，打包成一个理财产品，向社会再次出售出去。</p>
-<p><img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/%E8%AD%A6%E6%83%95%E9%A9%AC%E4%BA%91%E5%8F%98%E6%81%B6%E9%BE%99/10.webp"></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/%E8%AD%A6%E6%83%95%E9%A9%AC%E4%BA%91%E5%8F%98%E6%81%B6%E9%BE%99/10.webp"></p>
 <p>支付宝为什么要这么做呢？</p>
 <p>因为如果这样操作，支付宝可以马上回笼这1万元现金，再次放贷出去，并循环往复操作，用1万元撬动几十次、几百次的同额资金，不停放贷挣钱。</p>
 <p>而支付宝把这1万元债权，打包成理财产品，卖给社会其他人的利息，可能是年利率6%。这个年利率6%看似还不错，但是跟支付宝对外放贷的利率相比，小多了，因为放贷利率可能是15%甚至更高。</p>
@@ -352,13 +352,13 @@
 <p><strong>而如今的蚂蚁，就在这个转变的前夕。</strong></p>
 <p>希望我们不要忘记那句俗语：</p>
 <p><strong>千里之堤，溃于“蚁”穴。</strong></p>
-<p><img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/%E8%AD%A6%E6%83%95%E9%A9%AC%E4%BA%91%E5%8F%98%E6%81%B6%E9%BE%99/11.webp"></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/%E8%AD%A6%E6%83%95%E9%A9%AC%E4%BA%91%E5%8F%98%E6%81%B6%E9%BE%99/11.webp"></p>
 <p>参考文献：</p>
 <p>[1]《谁都可以抱怨监管，唯独蚂蚁不应该》伦敦研究员</p>
 <p>[2] B站用户，梦涛天</p>
-<p><img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/%E8%AD%A6%E6%83%95%E9%A9%AC%E4%BA%91%E5%8F%98%E6%81%B6%E9%BE%99/12.webp"></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/%E8%AD%A6%E6%83%95%E9%A9%AC%E4%BA%91%E5%8F%98%E6%81%B6%E9%BE%99/12.webp"></p>
 <p><strong>个人微信：</strong> <strong>wangxiaoqi707</strong>，希望我们不会失联</p>
-<p><img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/%E8%AD%A6%E6%83%95%E9%A9%AC%E4%BA%91%E5%8F%98%E6%81%B6%E9%BE%99/13.webp"></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/%E8%AD%A6%E6%83%95%E9%A9%AC%E4%BA%91%E5%8F%98%E6%81%B6%E9%BE%99/13.webp"></p>
 ]]></content>
       <categories>
         <category>存档</category>
@@ -389,6 +389,20 @@
       </tags>
   </entry>
   <entry>
+    <title>随记1</title>
+    <url>/posts/48848/</url>
+    <content><![CDATA[<h1 id="关于QQ"><a href="#关于QQ" class="headerlink" title="关于QQ"></a><del>关于QQ</del></h1><p><del>我目前不打算玩QQ空间，今天这条动态只是导向Blog的。</del></p>
+<p><del>以后有事会在这上面发，谢谢</del></p>
+<p>没事了</p>
+]]></content>
+      <categories>
+        <category>日记</category>
+      </categories>
+      <tags>
+        <tag>杂七杂八</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>随记2</title>
     <url>/posts/49040/</url>
     <content><![CDATA[<p>七日后  即为中考之时</p>
@@ -403,20 +417,6 @@
 <li><p>大概就这样吧</p>
 </li>
 </ul>
-]]></content>
-      <categories>
-        <category>日记</category>
-      </categories>
-      <tags>
-        <tag>杂七杂八</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>随记1</title>
-    <url>/posts/48848/</url>
-    <content><![CDATA[<h1 id="关于QQ"><a href="#关于QQ" class="headerlink" title="关于QQ"></a><del>关于QQ</del></h1><p><del>我目前不打算玩QQ空间，今天这条动态只是导向Blog的。</del></p>
-<p><del>以后有事会在这上面发，谢谢</del></p>
-<p>没事了</p>
 ]]></content>
       <categories>
         <category>日记</category>
@@ -468,7 +468,7 @@
     <title>蒙牛伊利六大罪状</title>
     <url>/posts/10312/</url>
     <content><![CDATA[<h1 id="备份：原文来自微信公众号『世界灯火』"><a href="#备份：原文来自微信公众号『世界灯火』" class="headerlink" title="备份：原文来自微信公众号『世界灯火』"></a>备份：原文来自微信公众号『世界灯火』</h1><p><strong>原作者：王小七</strong></p>
-<img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/蒙牛伊利六大罪状/1.jpg" style="zoom:50%;" />
+<img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/蒙牛伊利六大罪状/1.jpg" style="zoom:50%;" />
 
 <h2 id="写在前面："><a href="#写在前面：" class="headerlink" title="写在前面："></a><strong>写在前面：</strong></h2><p>PS：压力太大了，原文删了，除了YL和MN的公关，今天奶协也打电话过来了。抱歉了各位，再发最后一次，放在小号里，之后关于与伊利与蒙牛的后续争端我会写在大号里，在下一篇文章里讲清楚，大家可以去大号持续关注，感谢诸位的支持，我们一起加油。</p>
 <p>这是一篇深扒蒙牛与伊利暗黑发家史的文章，长达6500字，但每一个字都不多余，每一个字都有意义，可能开头会有稍许枯燥，但如果可以，希望你可以认真读完这篇文章，最后你会发现，你在关心的，绝对是一件非常有意义、而且事关每一个人的事。</p>
@@ -484,27 +484,27 @@
 <p>不只是因为蒙牛和伊利是如今占据垄断地位的两大奶业巨头，更因为在我眼里，这两家公司不过是同出一根的两颗果实，归根结底他们的底色是一样的，这也是为什么伊利与蒙牛的产品如此相似，除了牌子几乎一模一样：</p>
 <p>伊利推出优酸乳，蒙牛就跟着推出酸酸乳；伊利推出QQ星，蒙牛就跟着推出未来星；伊利推出了安慕希，蒙牛就跟着推出纯甄；蒙牛推出了特仑苏，伊利也跟着推出金典。</p>
 <p>甚至连出产的雪糕都几乎一模一样：</p>
-<p><img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/%E8%92%99%E7%89%9B%E4%BC%8A%E5%88%A9%E5%85%AD%E5%A4%A7%E7%BD%AA%E7%8A%B6/2.jpg"></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/%E8%92%99%E7%89%9B%E4%BC%8A%E5%88%A9%E5%85%AD%E5%A4%A7%E7%BD%AA%E7%8A%B6/2.jpg"></p>
 <p><strong>事实上，蒙牛与伊利的纠葛自1983年便已被埋下。</strong>蒙牛创始人牛根生与伊利创始人郑俊怀本就出自一家公司，伊利集团的前身是呼和浩特市回民奶食品厂，1983年1月，因为持续亏损，郑俊怀被调到该厂，任厂长，试图破局。而牛根生就是郑俊怀的得力手下，当年能力出众的牛根生，很快就带领一波富有才华的年轻人实现了扭亏为盈。1996年，伊利集团成立，郑俊怀成了董事长兼CEO，牛根生是伊利主管生产和销售的副董事长兼副总。因为牛根生能力出众，并且与下属直接接触更加频繁，伊利有一半人都牢牢听从牛根生的调遣。这下子郑俊怀慌了，眼看着自己有被架空的迹象，这怎么行？<strong>于是两年后，因为某些不为人知的原因，牛根生被扫地出门。</strong>被扫地出门后，反倒侧面证明了牛根生对厂内人才的影响之大，许多曾经的旧部都劝说牛根生东山再起，愿意辞职跟他继续干，不服气的牛根生响应手下意愿，筹措了100万后就注册了蒙牛乳业。自此，蒙牛与伊利便展开了长达20年的拉锯战，<strong>这也是为什么，蒙牛与伊利一直纠葛不休，甚至看起来就像一家企业的真正原因。</strong>就在这种相爱相生的厮杀中，蒙牛与伊利时而抱团、时而互相攻击，他们首先将其他乳制品企业击垮，而后再互相瓜分市场，形成两强双分天下的局面。<strong>但也就是在他们相爱相杀的争斗中，中国奶业走上了一条几乎不可挽回的歧路。</strong>在2000年之前，中国尚且没有一家全国性品牌，因为当时市场上只能生产低温杀菌的巴氏奶，这种奶保质期只有几天，且必须冷藏，销售半径有限，难以规模化，所以市场上绝大部分都是区域性企业。</p>
-<p><img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/post_fcd0a525/3.jpg"></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/post_fcd0a525/3.jpg"></p>
 <p>转机从1997年开始，这一年，牛根生即将被扫地出门，瑞典利乐包装公司与伊利达成了协议，我们熟悉的伊利盒装常温牛奶由此诞生。2000年后，利乐又与揭竿而起的蒙牛达成合作，只要蒙牛与伊利每卖出去一份奶，利乐就赚一份钱，<strong>这个默默无闻的包装公司反而成为蒙牛与伊利之战中的最大赢家。</strong>自此，奶制品企业结束了分裂割据的局面，蒙牛和伊利开始进军全国，试图二分天下。常温奶的出现让光明等地方奶企产生了危机感，试图反抗，曾经反目的蒙牛伊利则沆瀣一气，共同应对地方奶企的反抗，在03年时成功打败销售额居全国首位的龙头老大光明，开始占据主导地位。2004年，巴氏鲜奶企业们终于因为灭顶之灾般的压力团结在了一起，光明、新希望、燕塘、三元等四家以低温奶销售为主的中国乳品制造销售商，与美国国际纸业（另一家包装公司）公司达成联盟。一场鲜奶（即巴氏奶）和常温奶的大战随即爆发。<strong>资本斗争里没有温度可言，蒙牛和伊利更是把不择手段发挥到了极致。</strong>2005年2月2日下午，由国家标准化管理委员会在该委会议室召开了液体乳“鲜”字标识专家研讨会，与会人员约40人，其中包括卫生部、农业部、国标委、中国奶业协会、中国乳品工业协会、全国食品工业标准化技术委员会、三元、蒙牛、伊利、黑龙江乳业集团等有关专家或负责人。有意思的是，利乐公司传播事务总监杨斌致中国乳协领导的一封信被带进会场，并一一分发给各与会者，信中强烈地表达了支持“禁鲜”的意愿。同时内蒙政府也暗流涌动，<strong>当时这些蝇营狗苟尚且没有摆在阳光下，但也为2018年的跨省追捕埋下了伏笔。</strong>结果如蒙牛与伊利所愿，国家规定：低温鲜奶的外包装上不能再使用“鲜牛奶”等名称，而只能使用“灭菌奶(乳)”和“巴氏杀菌奶(乳)”等标准名称。此后主打“新鲜营养”的低温鲜奶被迫更名。与蒙牛伊利作对的奶企从此几乎一蹶不振，直到2008年1月1日，“禁鲜令”才被解除，巴氏奶能叫回鲜奶了，但是低温鲜奶已经丢了大半江山，回天无力，以“纯牛奶”“早餐奶”等命名的常温奶、调制奶大获全胜，几乎垄断了液态奶市场。但因为这场恶性竞争，导致各大国产奶企都不得不为了生存舍弃质量追求速度，以求在蒙牛与伊利的阴影下谋图一线生机，<strong>就在05年——08年之间的短短三年内，国产奶业就走向了不可挽回的歧路。</strong></p>
 <h2 id="3——恶之花绽开"><a href="#3——恶之花绽开" class="headerlink" title="3——恶之花绽开"></a>3——恶之花绽开</h2><p>即便当时在竞争中获胜，但那时的蒙牛依旧处于空壳状态，严重缺乏优质奶源，蒙牛选择从奶农手中收购低质牛奶，而后加工生产，因为中国奶牛生产严重滞后，并且缺乏优质奶牛品种，匮乏的奶源对面则是庞大的奶源需求，鲜奶争夺战一触即发。<strong>因为质量不达标，为了求速度争夺市场，往牛奶里添加各种化学物质就成了各大奶制品企业默认的潜规则。</strong>既然蒙牛和伊利这些龙头老大都不怕添加，你怕个啥？更何况只要你不努力添加抢占市场，就休想在蒙牛与伊利的阴影下存活。脂肪低了，加脂肪粉；细菌超标了，加抗生素；浓度低了，加乳清粉；发酸了，加碱面中和；蛋白质低了，加三聚氰胺蒙混。添加这些东西后的牛奶，只能保质六七个小时。因此，在将牛奶送检的车上还要备好双氧水，在检查前赶紧往里倒。在接下来的几年里，中国奶业从源头到终端都彻底腐烂，而作为恶果的劣质奶粉，则被一包又一包地被送到中国孩子的嘴里。2008年，大头娃娃事件东窗事发，三鹿成为人人喊打的过街老鼠，三聚氰胺几乎成为一代人的噩梦，直到22年后的今天，5月份一起湖南郴州的“大头娃娃”报道，即便报道中说明了不是三聚氰胺所致，还是引发了一阵恐慌，曾经的噩梦被唤醒。如今人们一提到三聚氰胺就会想到三鹿，但各位不知道的是，当年各大奶制品企业几乎全军覆没，如今的奶业领头人伊利蒙牛也光荣上榜。<strong>三鹿只是被顶出来成了出头鸟，得以让其他品牌悄然隐退。</strong>说道这里不得不提及职业打假人蒋卫锁，其实工业原料添加的恶果早在08年以前就频频爆出，当时蒋卫锁为了揭露行业黑幕，整顿中国奶业，就自费30万元发起“中国西部乳业万里行”行动，整理出《中国西部乳业濒临崩溃边缘》调查报告。为打假，他卖了企业，丢了老婆，两个孩子因此辍学，结果社会上反倒对他攻击的声音居多，说他是在毁灭中国奶业，社会上一度传言有人要花50万元买他人头。</p>
-<p><img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/post_fcd0a525/4.jpg"></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/post_fcd0a525/4.jpg"></p>
 <p>直到三聚氰胺事件炸开，理解他的声音才多了起来，但就在三聚氰胺事件被爆出四年过后，2012年蒋卫锁就被曾主动选择与其离婚的妻子捅死，与其妻子一同捅死蒋卫锁的还有其余6名青年，当时警方对外宣称是家庭纠纷，<strong>真正原因是否为此，我们就不得而知了。</strong>为众人抱薪会被针对，被捅死，残害百姓的企业反倒顺风顺水，悄然隐退，恐怕这也是蒋卫锁未曾想到的结果。<strong>蒋卫锁更想不到的是，</strong>一些在三聚氰胺事件中的受害者，在求公道的时候反倒被倒打一耙，郭利就是典例，郭利的女儿因为长期服用添加了三聚氰胺的雅士利奶粉，导致双肾产生结石，雅士利想要私了，郭利同意，于是在2009年约了郭利在杭州当面交付赔偿金，结果郭利等来的是警方的抓捕，判刑5年，17年广东法院再审此案，改判无罪，但此时郭利已妻离子散，甚至连去看女儿的权利也被限制。</p>
-<p><img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/post_fcd0a525/5.jpg"></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/post_fcd0a525/5.jpg"></p>
 <p>资本无情无义，很快蒙牛宣布收购雅士利，蒙牛当权者在接受采访时装作一脸茫然：<strong>“我们不知道郭利是谁。”</strong></p>
 <p><strong>但这些都不是最毒的，恐怕蒋卫锁最想不到的</strong>，是这起三聚氰胺事件，不仅没有提高国内奶制品水准，反倒成了蒙牛和伊利降低奶制品质量的借口。2010年，蒙牛和伊利宣称由于三聚氰胺事件，不能往牛奶添加工业原料，所以无法提高奶源质量和制奶技术，就降低了检验标准。结果一降，就是世界最低。蛋白质含量由旧国标的不低于2.95克/100克降低到了2.8克/100克。菌落不高于200万CFU/ml（越低越好），一下子比旧国标提高了150万，反观美国和欧盟，标准都比我们高的多，美国要求牛奶蛋白质不低于3.1克/100克，菌落总数不高于30万CFU/ml。欧盟要求更高，蛋白质不低于3.3克/100克，菌落总数不高于10万CFU/ml。大家可能对这些数据不太敏感，那我就直说了——<strong>蛋白质含量低于3g的牛奶，都是垃圾。</strong>很多人说，蛋白质含量的规定是针对生牛乳，生牛乳需要加工之后才会变成市场上售卖的牛奶，在加工的时候可以通过高温闪蒸技术去除水分，增加蛋白质含量，最后到消费者手中的牛奶蛋白质含量依旧不会太低。<strong>这个逻辑没错，但蛋白质含量标准降低真正损害的，不是消费者，而是中国整个奶制品行业。</strong>自一开始，中国生牛乳的蛋白质含量就远低于世界标准，因为中国奶农多是散户，标准参差不齐，而且奶牛品种质量极低，后天饲养技术更是与国外差的不是一般的大。面对这样的落后境地，国家标准竟然随着蒙牛伊利的需求反向升级，结果自然就是中国奶业的不思进取，奶源质量低下，既然你都降标准了，我又有何理由花钱自行升级？吃力不讨好？但质量低下的奶最终还是会卖给普罗大众，结果依旧是消费者为蒙牛与伊利造就的恶果买单。更不用提一下子提高150万的菌落标准，这是对中国奶业与消费者的双重损害，<strong>这个标准的意义在哪里？</strong>以美国为例，美国要求菌落总数不高于30万CFU/ml，结果就是全行业的质量提升，对于与牛奶直接接触的设备和容器都有明确的要求。如果不是一次性设备，在每次使用之前，不仅要求充分清洗，还要求使用高温或者化学试剂来消毒。反过来再想想我们提升到200万菌落数量的后果，显然就是落后且不讲究的生产环境，<strong>毕竟你标准都这么低了，我有何理由不脏一点？</strong>很多人说经过高温消毒，牛奶中的大量细菌会被杀灭，但注意了，目前任何技术都不可能全面杀死细菌，生牛乳中含的细菌越多，最后遗留的细菌也会越多，牛奶中的细菌种类繁多，大多数不会让人体产生直接反应，但各种如果一头奶牛感染了葡萄球菌而导致乳腺炎，它生产出了一批细菌数比较高的牛奶，本来这批奶不能进入市场，但因为标准降低，这批本不合格的生牛乳得以进入市场。这批生牛乳再经过巴氏消毒，细菌数降到了合格，而后被卖到消费者手中。但是，葡萄球菌在巴氏消毒之前产生的毒素，仍然存在于牛奶中而且保持活性。如果不幸被人喝了，就有可能患上急性肠胃炎。而这只是其中一例，牛奶中可能潜藏的细菌繁多，具体后果不一而足，很多也不是当下就能反馈出来，<strong>各位可以多品尝蒙牛伊利的平价奶，长期体验一下。</strong>结果，我们拥有的只剩落后的奶牛品种、生产技术，还有被乳企利益绑架了的行业标准。<strong>但作为凶狠远超虎豹豺狼的蒙牛伊利，又怎么可能只损害一个行业而已呢？</strong></p>
 <h2 id="4——恶之花蔓延"><a href="#4——恶之花蔓延" class="headerlink" title="4——恶之花蔓延"></a>4——恶之花蔓延</h2><p><strong>自蒙牛伊利占据垄断地位后，一切都开始变得不对劲了。</strong>他们可以绑架行业标准，可以恶性竞争打击对手，可以在三聚氰胺事件中悄然隐退，还可以不思进取，在2012年再度爆出质量丑闻：2012年，西安的大三学生在网上发布《我在内蒙古的十天——蒙牛冰淇淋代加工点实习记录》，将在蒙牛的实习经历形容为噩梦：生产地附近就是垃圾焚烧站，宿舍苍蝇漫天，他们必须每天工作12小时，喝水吃饭也要登记，有失误就要罚款，宿舍里贴着几十条罚款规则，没一个奖励规则，生产小布丁等产品的车间里满地都是污水，雪糕掉在地上也会被捡起来继续装袋。  </p>
-<p><img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/post_fcd0a525/6.jpg"></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/post_fcd0a525/6.jpg"></p>
 <p>（蒙牛冰淇淋生产间）一时间将蒙牛推上风口浪尖，蒙牛官方核查后报告属实，向公众道歉，微博则设置成不可评论。其他奶企更是乱象横生，几年前恶性竞争的后果不断爆出，经历过三聚氰胺事件后，各大奶粉企业不专注提升产品质量，反而在消费者心理上不断钻研。在多次奶粉安全事故之后，在中国家长们的心里，便宜奶粉已经约等于假冒伪劣产品，甚至可以说患上了“便宜奶粉恐惧症”，奶粉企业抓准中国家长的这个心理，不断提升奶粉价格，价格一度飙升到世界第一。这直接让卖奶粉的飞鹤、合生元<strong>毛利率接近70%<strong>，飞鹤董事长就曾直接表示：</strong>有低价奶粉，但消费者不买，认为贵的就是好。</strong>  </p>
-<p><img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/post_fcd0a525/7.jpg"></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/post_fcd0a525/7.jpg"></p>
 <p><strong>合着中国父母买着全球最贵的奶粉，附带一份全球最重的担心，还要为中国奶粉质量低下背锅。到了2018年，伊利竟然已经可以利用警方跨省追捕。</strong>2018年3月，北京一位男作家刘成昆，因为个人公众号上连载小说《出乌兰记》，结果被指影射伊利集团高层，然后被伊利指控，由呼和浩特市警方跨省抓捕。很快，伊利本着“男女搭配、干活不累”的原则，在4月份，又指控山西女奶农郭玉珍，由呼和浩特市警方跨省抓捕。  </p>
-<p><img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/post_fcd0a525/8.jpg"></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/post_fcd0a525/8.jpg"></p>
 <p>事件起因是郭玉珍在网上发文实名举报伊利压榨奶农，举报信的标题是《内蒙伊利公司如此欺压奶农谁来保护弱势奶农利益诉求》，指责伊利经常找出各种理由克扣奶站与养殖户的奶款，让养殖户和奶站遭受巨大经济损失，并且每月还变相把几千元不等的罚款摊派到奶农、奶站的奶款上，正所谓<strong>“风险共担，利润我独占”</strong>。而这种状况已经持续了好几年，但奶农敢怒不敢言，因为伊利蒙牛已经挤死其他奶企，他们不购买他们的奶，奶农就只能破产倒闭。<strong>结果刚一发声，郭玉珍就被跨省追捕。</strong>不知道跨省追捕是不是就是内蒙古的官方特色，从鸿茅药酒到蒙牛伊利，有求必应，我在之前的文章《“毒药”鸿茅药酒再登“优秀民族企业榜”，背后这三大权力机构功不可没》（文章已消失，之后有机会发给大家）中就曾发出过质疑，<strong>或许要真正彻查的，根本就不是鸿茅药酒和蒙牛伊利呢。</strong>虽然蒙牛伊利带坏了国内乳业风气，让中国奶业反向进步，枉顾消费者权益，还压榨奶农，<strong>但这并不意味着蒙牛伊利就生产不出好奶了，而是不想给内陆人生产平价好奶了。</strong>2008年三聚氰胺事件爆出，香港对大陆奶企提出质问，时任蒙牛CFO的姚同山在面对香港媒体的新闻发布会上这样说：“我们发到香港的产品和出口的产品是一样的，保证比内地（大陆）的产品质量更好、更安全”。到了2019年，在夏季达沃斯论坛上，蒙牛乳业CEO卢敏放再次强调了这一点：我们总把最好的产品投放到中国香港、新加坡市场。  </p>
-<p><img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/post_fcd0a525/9.jpg"></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/post_fcd0a525/9.jpg"></p>
 <p>从蒙牛和伊利对整个奶业、对竞争对手、对消费者、对奶农、对政府、对香港与整个内地的<strong>6种表现，6大罪状，</strong>让我不得不质疑：<strong>你们的心，是不是已经坏了？</strong>在如今两大奶企依旧顺风顺水，被册封为“民族企业”的当下，似乎已经没有人愿意质问，更没有人愿意回答。  </p>
 <h2 id="5——后记"><a href="#5——后记" class="headerlink" title="5——后记"></a>5——后记</h2><p>在国内疫情逐渐缓解，各行各业开始复苏之际，我反倒扒出蒙牛伊利的这些丑闻，似乎显得有些不合时宜，甚至自己也要担忧会不会被强势的蒙牛伊利跨省追捕。但我实在看不下去所谓“民族企业”的声浪，不是什么企业都配称民族企业，更不是什么企业都值得我们自掏腰包去维护，至少那些破坏整个行业，导致中国奶业倒退，压榨奶农，枉顾消费者利益的企业不配。我写这篇文章，想质问的不仅是蒙牛和伊利为何不对自己曾经作过的恶负责，我更想问的是：蒙牛和伊利，你们的心是不是已经坏了？你们想要龙头老大的利润，想要老百姓的腰包，你们是否又愿意担起龙头老大的责任？<strong>我为什么要质问？又为什么要让他们担起责任？</strong>因为占据垄断地位的他们，踩着的，是中国奶业的命运，是大陆十几亿人的生活，是中国在世界上的风貌与名声。<strong>只要没有等来他们的回答，我的质问就不会停止。他们不说，媒体不说，那就我来说。历史不记得，我帮你记得。</strong>  </p>
-<p><img data-src="https://raw.githubusercontents.com/Cccc-owo/Blog_Pictures/master/post_fcd0a525/10.jpg"></p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/post_fcd0a525/10.jpg"></p>
 <p><strong>参考文献：</strong></p>
 <p>[1] 《降低蛋白质指标，“生奶新标”的另一“哭点”》果壳  </p>
 <p>[2] 《放宽细菌指标，“生奶新标”意味着什么？》果壳  </p>
