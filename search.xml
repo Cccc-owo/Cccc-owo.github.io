@@ -139,8 +139,9 @@
 <li>其中，第二行最后的 <strong>「!!!下载的核心文件名!!!」需要改为核心文件名，切记！</strong>  </li>
 <li>接下来， <strong>保存并关闭文本文档</strong>。把文本文档重命名为「Start**.bat**」，改完后请确认文件类型为「 <strong>Windows 批处理文件</strong>」，如不是，请百度<a href="https://www.baidu.com/s?wd=%E6%9B%B4%E6%94%B9%E6%96%87%E4%BB%B6%E6%89%A9%E5%B1%95%E5%90%8D">「更改文件拓展名」</a>。  </li>
 </ol>
+<p>注：<a href="https://www.mcbbs.net/thread-1156988-1-1.html">https://www.mcbbs.net/thread-1156988-1-1.html</a></p>
 <p><img data-src="https://cdn.jsdelivr.net/gh/Cccc-owo/Blog_Pictures@master/%E5%BC%80%E6%9C%8D/4.png" alt="4"></p>
-<h3 id="2-结束了"><a href="#2-结束了" class="headerlink" title="2.结束了?"></a>2.结束了?</h3><ol>
+<h3 id="2-启动服务器测试"><a href="#2-启动服务器测试" class="headerlink" title="2.启动服务器测试"></a>2.启动服务器测试</h3><ol>
 <li>左键双击「Start.bat」等待五秒左右，不用管命令行(下称 <strong>CMD</strong>)出现什么字，按下任意键将其关闭。  </li>
 <li>现在可见文件夹里又 <strong>多了许多文件</strong>，不要慌，找到 <strong>「eula.txt」</strong>并打开。你可能会看到 <strong>如下</strong>内容👇  </li>
 </ol>
